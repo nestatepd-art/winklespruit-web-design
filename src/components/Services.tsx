@@ -1,4 +1,4 @@
-import { Globe, Code, Search, TrendingUp, Zap, Shield } from 'lucide-react';
+import { Globe, Code, Search, TrendingUp, Zap, Shield, Target, Share2 } from 'lucide-react';
 
 const services = [
   {
@@ -10,6 +10,16 @@ const services = [
     icon: Search,
     title: "SEO Optimization",
     description: "Data-driven SEO strategies that boost your rankings, increase organic traffic, and grow your online presence."
+  },
+  {
+    icon: Target,
+    title: "Google Ads",
+    description: "Strategic Google Ads campaigns that maximize ROI, drive qualified traffic, and generate high-converting leads."
+  },
+  {
+    icon: Share2,
+    title: "Social Media Ads",
+    description: "Targeted social media advertising on Facebook, Instagram, and LinkedIn to reach and engage your ideal audience."
   },
   {
     icon: TrendingUp,
