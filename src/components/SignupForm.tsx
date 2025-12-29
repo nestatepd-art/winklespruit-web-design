@@ -99,7 +99,7 @@ const SignupForm = () => {
                 </div>
                 <div>
                   <h4 className="font-heading font-semibold mb-1">Email</h4>
-                  <p className="text-muted-foreground">info@nativedigitalmedia.co.za</p>
+                  <p className="text-muted-foreground">sales@nativeestates.co.za</p>
                 </div>
               </div>
             </div>

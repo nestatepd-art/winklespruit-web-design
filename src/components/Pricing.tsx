@@ -5,7 +5,8 @@ const pricingPackages = [
   {
     name: "Web Development",
     description: "Custom websites built to convert",
-    price: "From R8,500",
+    originalPrice: "From R8,500",
+    price: "From R4,250",
     period: "once-off",
     features: [
       "Responsive mobile-first design",
@@ -20,7 +21,8 @@ const pricingPackages = [
   {
     name: "SEO Optimization",
     description: "Boost your organic rankings",
-    price: "R2,500",
+    originalPrice: "R2,500",
+    price: "R1,250",
     period: "/month",
     features: [
       "Keyword research & strategy",
@@ -35,7 +37,8 @@ const pricingPackages = [
   {
     name: "Google Ads",
     description: "Targeted pay-per-click campaigns",
-    price: "R3,000",
+    originalPrice: "R3,000",
+    price: "R1,500",
     period: "/month",
     features: [
       "Campaign setup & management",
@@ -50,7 +53,8 @@ const pricingPackages = [
   {
     name: "Social Media Ads",
     description: "Reach your audience on social",
-    price: "R2,800",
+    originalPrice: "R2,800",
+    price: "R1,400",
     period: "/month",
     features: [
       "Facebook & Instagram ads",
@@ -73,6 +77,9 @@ const Pricing = () => {
           <h2 className="font-heading text-4xl md:text-5xl font-bold mt-4 mb-6">
             Transparent <span className="gradient-text">Pricing</span>
           </h2>
+          <div className="inline-block bg-primary/20 border border-primary/30 rounded-full px-4 py-2 mb-4">
+            <span className="text-primary font-semibold">🎉 January 2026 Special – 50% OFF!</span>
+          </div>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Choose the package that fits your business needs. All prices exclude VAT and ad spend.
           </p>
@@ -100,9 +107,12 @@ const Pricing = () => {
               <div className="text-center mb-6">
                 <h3 className="font-heading text-xl font-semibold mb-2">{pkg.name}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{pkg.description}</p>
-                <div className="flex items-baseline justify-center gap-1">
-                  <span className="font-heading text-3xl font-bold">{pkg.price}</span>
-                  <span className="text-muted-foreground text-sm">{pkg.period}</span>
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-muted-foreground text-lg line-through">{pkg.originalPrice}</span>
+                  <div className="flex items-baseline justify-center gap-1">
+                    <span className="font-heading text-3xl font-bold text-primary">{pkg.price}</span>
+                    <span className="text-muted-foreground text-sm">{pkg.period}</span>
+                  </div>
                 </div>
               </div>
 
