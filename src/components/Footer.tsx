@@ -38,6 +38,10 @@ const Footer = () => {
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                 <span>073 645 6141</span>
               </li>
+              <li className="flex items-center gap-2 text-muted-foreground">
+                <Mail className="w-4 h-4 text-primary flex-shrink-0" />
+                <span>sales@nativeestates.co.za</span>
+              </li>
             </ul>
           </div>
         </div>
