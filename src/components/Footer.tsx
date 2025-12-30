@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail } from 'lucide-react';
+import logo from '@/assets/native-digital-logo.png';
 
 const Footer = () => {
   return (
@@ -6,9 +7,7 @@ const Footer = () => {
       <div className="container mx-auto max-w-6xl">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div className="lg:col-span-2">
-            <h3 className="font-heading text-2xl font-bold mb-4">
-              Native <span className="gradient-text">Digital</span> Media
-            </h3>
+            <img src={logo} alt="Native Digital" className="h-16 w-auto mb-4" />
             <p className="text-muted-foreground leading-relaxed mb-6 max-w-md">
               Transforming businesses through innovative web development and strategic SEO solutions. Your trusted digital partner in South Africa.
             </p>
