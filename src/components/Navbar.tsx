@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import logo from '@/assets/native-digital-logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-xl border-b border-border">
       <div className="container mx-auto max-w-6xl px-4">
         <div className="flex items-center justify-between h-16">
-          <a href="#" className="font-heading text-xl font-bold">
-            Native <span className="gradient-text">Digital</span>
+          <a href="#" className="flex items-center">
+            <img src={logo} alt="Native Digital" className="h-12 w-auto" />
           </a>
           
           <div className="hidden md:flex items-center gap-8">
