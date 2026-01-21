@@ -39,7 +39,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                <span>sales@nativeestates.co.za</span>
+                <span>sales@nativedigital.co.za</span>
               </li>
             </ul>
           </div>
