@@ -43,7 +43,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send email to sales team
     const emailResponse = await resend.emails.send({
-      from: "Native Digital Contact Form <onboarding@resend.dev>",
+      from: "Native Digital <noreply@nativedigital.co.za>",
       to: ["sales@nativedigital.co.za"],
       subject: `New Contact Form Submission from ${name}`,
       html: `
@@ -61,7 +61,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send confirmation email to the user
     const confirmationResponse = await resend.emails.send({
-      from: "Native Digital <onboarding@resend.dev>",
+      from: "Native Digital <noreply@nativedigital.co.za>",
       to: [email],
       subject: "We received your message!",
       html: `
