@@ -1,4 +1,4 @@
-import { Globe, Code, Search, TrendingUp, Zap, Shield, Target, Share2, ArrowRight } from 'lucide-react';
+import { Globe, Code, Search, TrendingUp, Zap, Shield, Target, Share2, ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import teamCollab from '@/assets/team-collab.jpg';
 
@@ -26,12 +26,26 @@ const services = [
   {
     icon: TrendingUp,
     title: "Digital Marketing",
-    description: "Comprehensive digital marketing campaigns that connect your brand with your target audience."
+    description: "Comprehensive campaigns that connect your brand with your target audience.",
+    bullets: [
+      "Email marketing & automation",
+      "Content marketing & copywriting",
+      "Brand strategy & positioning",
+      "Analytics, reporting & ROI tracking",
+      "Conversion rate optimization (CRO)"
+    ]
   },
   {
     icon: Globe,
     title: "E-Commerce Solutions",
-    description: "Powerful online stores that convert visitors into customers with seamless shopping experiences."
+    description: "Powerful online stores that turn visitors into paying customers.",
+    bullets: [
+      "Shopify & WooCommerce builds",
+      "Product catalog & inventory setup",
+      "Secure payment gateway integration",
+      "Abandoned cart recovery flows",
+      "Mobile-optimized checkout experience"
+    ]
   },
   {
     icon: Zap,
@@ -97,6 +111,16 @@ const Services = () => {
               </div>
               <h3 className="font-heading text-xl font-semibold mb-3">{service.title}</h3>
               <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+              {service.bullets && (
+                <ul className="mt-4 space-y-2">
+                  {service.bullets.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <Check className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </div>
