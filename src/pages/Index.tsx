@@ -3,7 +3,7 @@ import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import Pricing from '@/components/Pricing';
 import WhyChooseUs from '@/components/WhyChooseUs';
-import SignupForm from '@/components/SignupForm';
+import LeadAuditForm from '@/components/LeadAuditForm';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -14,7 +14,7 @@ const Index = () => {
       <Services />
       <Pricing />
       <WhyChooseUs />
-      <SignupForm />
+      <LeadAuditForm />
       <Footer />
     </main>
   );
