@@ -1,8 +1,9 @@
-import { Check } from 'lucide-react';
+import { Check, Code, Search, Target, Share2, Sparkles } from 'lucide-react';
 import { Button } from './ui/button';
 
 const pricingPackages = [
   {
+    icon: Code,
     name: "Web Development",
     description: "Custom websites built to convert",
     originalPrice: "From R8,500",
@@ -19,6 +20,7 @@ const pricingPackages = [
     popular: false
   },
   {
+    icon: Search,
     name: "SEO Optimization",
     description: "Boost your organic rankings",
     originalPrice: "R2,500",
@@ -35,6 +37,7 @@ const pricingPackages = [
     popular: true
   },
   {
+    icon: Target,
     name: "Google Ads",
     description: "Targeted pay-per-click campaigns",
     originalPrice: "R3,000",
@@ -51,6 +54,7 @@ const pricingPackages = [
     popular: false
   },
   {
+    icon: Share2,
     name: "Social Media Ads",
     description: "Reach your audience on social",
     originalPrice: "R2,800",
@@ -77,8 +81,9 @@ const Pricing = () => {
           <h2 className="font-heading text-4xl md:text-5xl font-bold mt-4 mb-6">
             Transparent <span className="gradient-text">Pricing</span>
           </h2>
-          <div className="inline-block bg-primary/20 border border-primary/30 rounded-full px-4 py-2 mb-4">
-            <span className="text-primary font-semibold">🎉 January 2026 Special – 50% OFF!</span>
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full px-5 py-2 mb-4">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-primary font-semibold">January 2026 Special — 50% OFF</span>
           </div>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Choose the package that fits your business needs. All prices exclude VAT and ad spend.
@@ -105,12 +110,15 @@ const Pricing = () => {
               )}
 
               <div className="text-center mb-6">
+                <div className={`w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center ${pkg.popular ? 'bg-gradient-to-br from-primary to-secondary' : 'bg-gradient-to-br from-primary/20 to-secondary/20'}`}>
+                  <pkg.icon className={`w-7 h-7 ${pkg.popular ? 'text-primary-foreground' : 'text-primary'}`} />
+                </div>
                 <h3 className="font-heading text-xl font-semibold mb-2">{pkg.name}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{pkg.description}</p>
                 <div className="flex flex-col items-center gap-1">
-                  <span className="text-muted-foreground text-lg line-through">{pkg.originalPrice}</span>
+                  <span className="text-muted-foreground text-sm line-through">{pkg.originalPrice}</span>
                   <div className="flex items-baseline justify-center gap-1">
-                    <span className="font-heading text-3xl font-bold text-primary">{pkg.price}</span>
+                    <span className="font-heading text-3xl font-bold gradient-text">{pkg.price}</span>
                     <span className="text-muted-foreground text-sm">{pkg.period}</span>
                   </div>
                 </div>
