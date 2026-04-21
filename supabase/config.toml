@@ -1,1 +1,7 @@
 project_id = "ngtfkzvqvoohrtvxkusj"
+
+[functions.run-ai-audit]
+verify_jwt = false
+
+[functions.send-contact-email]
+verify_jwt = false
