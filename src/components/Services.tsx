@@ -1,4 +1,6 @@
-import { Globe, Code, Search, TrendingUp, Zap, Shield, Target, Share2 } from 'lucide-react';
+import { Globe, Code, Search, TrendingUp, Zap, Shield, Target, Share2, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import teamCollab from '@/assets/team-collab.jpg';
 
 const services = [
   {
@@ -47,6 +49,32 @@ const Services = () => {
   return (
     <section id="services" className="py-24 px-4">
       <div className="container mx-auto max-w-6xl">
+        {/* Featured banner */}
+        <div className="relative mb-20 rounded-3xl overflow-hidden border border-border animate-fade-up">
+          <img
+            src={teamCollab}
+            alt="Native Digital Media team collaborating on a client analytics dashboard"
+            loading="lazy"
+            width={1280}
+            height={960}
+            className="w-full h-64 md:h-80 object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/20" />
+          <div className="absolute inset-0 flex items-center px-8 md:px-12">
+            <div className="max-w-md">
+              <span className="text-primary font-medium text-sm uppercase tracking-wider">
+                A partner, not just a vendor
+              </span>
+              <h3 className="font-heading text-2xl md:text-3xl font-bold mt-3 mb-4">
+                One team for design, dev, SEO &amp; ads
+              </h3>
+              <p className="text-muted-foreground text-sm md:text-base">
+                Stop juggling agencies. We handle the full digital growth stack under one roof.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="text-center mb-16 animate-fade-up">
           <span className="text-primary font-medium text-sm uppercase tracking-wider">Our Services</span>
           <h2 className="font-heading text-4xl md:text-5xl font-bold mt-4 mb-6">
@@ -56,21 +84,30 @@ const Services = () => {
             From concept to launch, we provide end-to-end digital solutions that help businesses thrive online.
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <div 
+            <div
               key={service.title}
-              className={`group p-8 rounded-2xl card-gradient border border-border hover:border-primary/30 transition-all duration-500 hover:-translate-y-2 animate-fade-up-delay-${Math.min(index, 3)}`}
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="group p-8 rounded-2xl card-gradient border border-border hover:border-primary/40 hover:shadow-[0_8px_40px_hsl(217,91%,60%,0.15)] transition-all duration-500 hover:-translate-y-2 animate-fade-up"
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300">
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <service.icon className="w-7 h-7 text-primary" />
               </div>
               <h3 className="font-heading text-xl font-semibold mb-3">{service.title}</h3>
               <p className="text-muted-foreground leading-relaxed">{service.description}</p>
             </div>
           ))}
+        </div>
+
+        <div className="text-center mt-12 animate-fade-up">
+          <Button variant="hero" size="lg" asChild>
+            <a href="#contact">
+              Discuss Your Project
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </Button>
         </div>
       </div>
     </section>
