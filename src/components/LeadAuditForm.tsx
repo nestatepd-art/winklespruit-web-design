@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Send, MapPin, Phone, Mail, Sparkles, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { trackLeadConversion } from "@/lib/tracking";
+import auditVisual from "@/assets/ai-audit-visual.jpg";
 
 interface AuditResult {
   score?: number;
@@ -126,8 +127,12 @@ const LeadAuditForm = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-4">
-      <div className="container mx-auto max-w-6xl">
+    <section id="contact" className="relative py-24 px-4 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 -right-32 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
+      </div>
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Left column — info */}
           <div className="animate-fade-up">
@@ -137,10 +142,22 @@ const LeadAuditForm = () => {
             <h2 className="font-heading text-4xl md:text-5xl font-bold mt-4 mb-6">
               Free AI Website <span className="gradient-text">Audit</span>
             </h2>
-            <p className="text-muted-foreground text-lg mb-10 leading-relaxed">
+            <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
               Drop your website URL below and our AI will instantly score your site
               and give you 3-5 actionable recommendations — for free, no obligation.
             </p>
+
+            <div className="relative mb-10 rounded-3xl overflow-hidden border border-border">
+              <img
+                src={auditVisual}
+                alt="AI scanning a website to generate an instant audit report"
+                loading="lazy"
+                width={1024}
+                height={1024}
+                className="w-full h-48 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+            </div>
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
