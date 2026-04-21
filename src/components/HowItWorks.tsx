@@ -51,7 +51,7 @@ const HowItWorks = () => {
             <div className="relative rounded-3xl overflow-hidden border border-border">
               <img
                 src={processVisual}
-                alt="Illustration of analytics dashboard, audit magnifier and growth rocket representing our process"
+                alt="Laptop displaying analytics dashboard with floating performance metrics"
                 loading="lazy"
                 width={1280}
                 height={960}
