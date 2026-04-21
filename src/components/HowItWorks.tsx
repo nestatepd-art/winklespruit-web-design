@@ -51,7 +51,7 @@ const HowItWorks = () => {
             <div className="relative rounded-3xl overflow-hidden border border-border">
               <img
                 src={processVisual}
-                alt="Illustration of layered web development workflow"
+                alt="Illustration of analytics dashboard, audit magnifier and growth rocket representing our process"
                 loading="lazy"
                 width={1280}
                 height={960}
