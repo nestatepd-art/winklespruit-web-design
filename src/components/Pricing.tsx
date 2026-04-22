@@ -7,7 +7,7 @@ const pricingPackages = [
     name: "Web Development",
     description: "Custom websites built to convert",
     originalPrice: "From R8,500",
-    price: "From R4,250",
+    price: "From R2,125",
     period: "once-off",
     features: [
       "Responsive mobile-first design",
@@ -24,7 +24,7 @@ const pricingPackages = [
     name: "SEO Optimization",
     description: "Boost your organic rankings",
     originalPrice: "R2,500",
-    price: "R1,250",
+    price: "R625",
     period: "/month",
     features: [
       "Keyword research & strategy",
@@ -41,7 +41,7 @@ const pricingPackages = [
     name: "Google Ads",
     description: "Targeted pay-per-click campaigns",
     originalPrice: "R3,000",
-    price: "R1,500",
+    price: "R750",
     period: "/month",
     features: [
       "Campaign setup & management",
@@ -58,7 +58,7 @@ const pricingPackages = [
     name: "Social Media Ads",
     description: "Reach your audience on social",
     originalPrice: "R2,800",
-    price: "R1,400",
+    price: "R700",
     period: "/month",
     features: [
       "Facebook & Instagram ads",
@@ -83,7 +83,7 @@ const Pricing = () => {
           </h2>
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full px-5 py-2 mb-4">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-primary font-semibold">January 2026 Special — 50% OFF</span>
+            <span className="text-primary font-semibold">Limited Time Special — 75% OFF</span>
           </div>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Choose the package that fits your business needs. All prices exclude VAT and ad spend.
