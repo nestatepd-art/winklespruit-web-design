@@ -5,6 +5,7 @@ import HowItWorks from '@/components/HowItWorks';
 import Pricing from '@/components/Pricing';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import LeadAuditForm from '@/components/LeadAuditForm';
+import Blog from '@/components/Blog';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
 
@@ -18,6 +19,7 @@ const Index = () => {
       <Pricing />
       <WhyChooseUs />
       <LeadAuditForm />
+      <Blog />
       <FAQ />
       <Footer />
     </main>
