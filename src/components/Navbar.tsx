@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogIn } from 'lucide-react';
 import logo from '@/assets/native-digital-logo.png';
 
 const Navbar = () => {
@@ -20,7 +21,10 @@ const Navbar = () => {
             <a href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</a>
             <a href="/#about" className="text-muted-foreground hover:text-foreground transition-colors">About</a>
             <a href="/#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
-            <Button variant="default" size="sm">
+            <Link to="/auth" className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1">
+              <LogIn className="w-4 h-4" /> Client Zone
+            </Link>
+            <Button variant="default" size="sm" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
               Get Started
             </Button>
           </div>
@@ -42,7 +46,10 @@ const Navbar = () => {
               <a href="/blog" className="text-muted-foreground hover:text-foreground transition-colors py-2" onClick={() => setIsOpen(false)}>Blog</a>
               <a href="/#about" className="text-muted-foreground hover:text-foreground transition-colors py-2" onClick={() => setIsOpen(false)}>About</a>
               <a href="/#contact" className="text-muted-foreground hover:text-foreground transition-colors py-2" onClick={() => setIsOpen(false)}>Contact</a>
-              <Button variant="default" size="sm" className="w-fit">
+              <Link to="/auth" className="text-muted-foreground hover:text-foreground transition-colors py-2 inline-flex items-center gap-1" onClick={() => setIsOpen(false)}>
+                <LogIn className="w-4 h-4" /> Client Zone
+              </Link>
+              <Button variant="default" size="sm" className="w-fit" onClick={() => { setIsOpen(false); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>
                 Get Started
               </Button>
             </div>
