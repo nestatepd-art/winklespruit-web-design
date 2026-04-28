@@ -14,6 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
+      invoices: {
+        Row: {
+          client_user_id: string
+          created_at: string
+          currency: string
+          description: string | null
+          due_date: string | null
+          id: string
+          invoice_number: string
+          issued_date: string
+          line_items: Json
+          notes: string | null
+          paid_at: string | null
+          payment_method: Database["public"]["Enums"]["payment_method"] | null
+          status: Database["public"]["Enums"]["invoice_status"]
+          stripe_session_id: string | null
+          subtotal: number
+          title: string
+          total: number
+          updated_at: string
+          vat: number
+        }
+        Insert: {
+          client_user_id: string
+          created_at?: string
+          currency?: string
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          invoice_number: string
+          issued_date?: string
+          line_items?: Json
+          notes?: string | null
+          paid_at?: string | null
+          payment_method?: Database["public"]["Enums"]["payment_method"] | null
+          status?: Database["public"]["Enums"]["invoice_status"]
+          stripe_session_id?: string | null
+          subtotal?: number
+          title: string
+          total?: number
+          updated_at?: string
+          vat?: number
+        }
+        Update: {
+          client_user_id?: string
+          created_at?: string
+          currency?: string
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          invoice_number?: string
+          issued_date?: string
+          line_items?: Json
+          notes?: string | null
+          paid_at?: string | null
+          payment_method?: Database["public"]["Enums"]["payment_method"] | null
+          status?: Database["public"]["Enums"]["invoice_status"]
+          stripe_session_id?: string | null
+          subtotal?: number
+          title?: string
+          total?: number
+          updated_at?: string
+          vat?: number
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           audit_result: Json | null
@@ -56,15 +122,182 @@ export type Database = {
         }
         Relationships: []
       }
+      payments: {
+        Row: {
+          amount: number
+          client_user_id: string
+          created_at: string
+          currency: string
+          id: string
+          invoice_id: string
+          method: Database["public"]["Enums"]["payment_method"]
+          notes: string | null
+          paid_at: string
+          reference: string | null
+          stripe_payment_intent: string | null
+          stripe_session_id: string | null
+        }
+        Insert: {
+          amount: number
+          client_user_id: string
+          created_at?: string
+          currency?: string
+          id?: string
+          invoice_id: string
+          method: Database["public"]["Enums"]["payment_method"]
+          notes?: string | null
+          paid_at?: string
+          reference?: string | null
+          stripe_payment_intent?: string | null
+          stripe_session_id?: string | null
+        }
+        Update: {
+          amount?: number
+          client_user_id?: string
+          created_at?: string
+          currency?: string
+          id?: string
+          invoice_id?: string
+          method?: Database["public"]["Enums"]["payment_method"]
+          notes?: string | null
+          paid_at?: string
+          reference?: string | null
+          stripe_payment_intent?: string | null
+          stripe_session_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_invoice_id_fkey"
+            columns: ["invoice_id"]
+            isOneToOne: false
+            referencedRelation: "invoices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          company: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          client_user_id: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          notes: string | null
+          progress_percent: number
+          stage: Database["public"]["Enums"]["project_stage"]
+          start_date: string | null
+          target_date: string | null
+          updated_at: string
+        }
+        Insert: {
+          client_user_id: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          notes?: string | null
+          progress_percent?: number
+          stage?: Database["public"]["Enums"]["project_stage"]
+          start_date?: string | null
+          target_date?: string | null
+          updated_at?: string
+        }
+        Update: {
+          client_user_id?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          notes?: string | null
+          progress_percent?: number
+          stage?: Database["public"]["Enums"]["project_stage"]
+          start_date?: string | null
+          target_date?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "client"
+      invoice_status: "draft" | "sent" | "paid" | "overdue" | "cancelled"
+      payment_method: "stripe" | "eft" | "other"
+      project_stage:
+        | "discovery"
+        | "design"
+        | "build"
+        | "qa"
+        | "live"
+        | "maintenance"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -191,6 +424,18 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "client"],
+      invoice_status: ["draft", "sent", "paid", "overdue", "cancelled"],
+      payment_method: ["stripe", "eft", "other"],
+      project_stage: [
+        "discovery",
+        "design",
+        "build",
+        "qa",
+        "live",
+        "maintenance",
+      ],
+    },
   },
 } as const
