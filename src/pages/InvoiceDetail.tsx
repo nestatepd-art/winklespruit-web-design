@@ -215,6 +215,7 @@ const InvoiceDetail = () => {
               Once your EFT clears, we'll mark the invoice as paid (typically within 1 business day). Send proof of payment to <a href="mailto:sales@nativedigital.co.za" className="text-primary hover:underline">sales@nativedigital.co.za</a> to speed it up.
             </p>
           </Card>
+          </>
         )}
       </main>
     </div>
