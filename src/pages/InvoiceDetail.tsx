@@ -152,6 +152,30 @@ const InvoiceDetail = () => {
             </div>
           </Card>
         ) : (
+          <>
+            {verifying && (
+              <Card className="p-4 mb-6 card-gradient border-primary/30 bg-primary/5">
+                <div className="flex items-center gap-3 text-sm">
+                  <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                  Verifying your payment with Paystack…
+                </div>
+              </Card>
+            )}
+
+            <Card className="p-6 card-gradient border-primary/40 mb-6">
+              <div className="flex items-center gap-2 mb-2">
+                <CreditCard className="w-5 h-5 text-primary" />
+                <h2 className="font-heading text-lg font-semibold">Pay instantly online</h2>
+              </div>
+              <p className="text-sm text-muted-foreground mb-4">
+                Pay with card, instant EFT, or mobile money via Paystack — secure & fast. Your invoice updates automatically.
+              </p>
+              <Button onClick={handlePayOnline} disabled={paying} size="lg" className="w-full sm:w-auto">
+                {paying ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <CreditCard className="w-4 h-4 mr-2" />}
+                Pay {fmt(Number(invoice.total), invoice.currency)} now
+              </Button>
+            </Card>
+
           <Card className="p-6 card-gradient border-border">
             <div className="flex items-center gap-2 mb-4">
               <Building2 className="w-5 h-5 text-primary" />
