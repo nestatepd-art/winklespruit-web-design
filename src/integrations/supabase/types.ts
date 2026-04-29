@@ -290,7 +290,7 @@ export type Database = {
     Enums: {
       app_role: "admin" | "client"
       invoice_status: "draft" | "sent" | "paid" | "overdue" | "cancelled"
-      payment_method: "stripe" | "eft" | "other"
+      payment_method: "stripe" | "eft" | "other" | "paystack"
       project_stage:
         | "discovery"
         | "design"
@@ -427,7 +427,7 @@ export const Constants = {
     Enums: {
       app_role: ["admin", "client"],
       invoice_status: ["draft", "sent", "paid", "overdue", "cancelled"],
-      payment_method: ["stripe", "eft", "other"],
+      payment_method: ["stripe", "eft", "other", "paystack"],
       project_stage: [
         "discovery",
         "design",

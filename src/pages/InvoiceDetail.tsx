@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import ClientZoneNav from '@/components/ClientZoneNav';
 import { Card } from '@/components/ui/card';
@@ -7,14 +7,17 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { BANKING_DETAILS } from '@/lib/banking';
-import { ArrowLeft, Loader2, Copy, Building2, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Loader2, Copy, Building2, CheckCircle2, CreditCard } from 'lucide-react';
 import { useSEO } from '@/hooks/useSEO';
 
 const InvoiceDetail = () => {
   const { id } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { toast } = useToast();
   const [invoice, setInvoice] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [paying, setPaying] = useState(false);
+  const [verifying, setVerifying] = useState(false);
 
   useSEO({ title: 'Invoice | Native Digital Media', description: 'View and pay your invoice.', canonical: `/client/invoice/${id}` });
 
@@ -27,11 +30,59 @@ const InvoiceDetail = () => {
     })();
   }, [id]);
 
+  // Handle Paystack callback (?reference=...)
+  useEffect(() => {
+    const reference = searchParams.get('reference') || searchParams.get('trxref');
+    if (!reference || !id) return;
+    setVerifying(true);
+    (async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('paystack-verify', { body: { reference } });
+        if (error) throw error;
+        if (data?.status === 'success') {
+          toast({ title: 'Payment successful', description: 'Your invoice has been marked as paid.' });
+          const { data: refreshed } = await supabase.from('invoices').select('*').eq('id', id).maybeSingle();
+          setInvoice(refreshed);
+        } else {
+          toast({ title: 'Payment not completed', description: data?.message || 'Please try again.', variant: 'destructive' });
+        }
+      } catch (e: any) {
+        toast({ title: 'Verification error', description: e.message || 'Could not verify payment.', variant: 'destructive' });
+      } finally {
+        setVerifying(false);
+        searchParams.delete('reference');
+        searchParams.delete('trxref');
+        setSearchParams(searchParams, { replace: true });
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
   const fmt = (n: number, c = 'ZAR') => new Intl.NumberFormat('en-ZA', { style: 'currency', currency: c }).format(n);
 
   const copy = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
     toast({ title: 'Copied', description: `${label} copied to clipboard` });
+  };
+
+  const handlePayOnline = async () => {
+    if (!invoice) return;
+    setPaying(true);
+    try {
+      const callbackUrl = `${window.location.origin}/client/invoice/${invoice.id}`;
+      const { data, error } = await supabase.functions.invoke('paystack-init', {
+        body: { invoice_id: invoice.id, callback_url: callbackUrl },
+      });
+      if (error) throw error;
+      if (data?.authorization_url) {
+        window.location.href = data.authorization_url;
+      } else {
+        throw new Error('No authorization URL returned');
+      }
+    } catch (e: any) {
+      toast({ title: 'Could not start payment', description: e.message || 'Try again later.', variant: 'destructive' });
+      setPaying(false);
+    }
   };
 
   if (loading) return <div className="min-h-screen bg-background"><ClientZoneNav /><div className="flex justify-center py-20"><Loader2 className="w-8 h-8 animate-spin text-primary" /></div></div>;
@@ -101,6 +152,30 @@ const InvoiceDetail = () => {
             </div>
           </Card>
         ) : (
+          <>
+            {verifying && (
+              <Card className="p-4 mb-6 card-gradient border-primary/30 bg-primary/5">
+                <div className="flex items-center gap-3 text-sm">
+                  <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                  Verifying your payment with Paystack…
+                </div>
+              </Card>
+            )}
+
+            <Card className="p-6 card-gradient border-primary/40 mb-6">
+              <div className="flex items-center gap-2 mb-2">
+                <CreditCard className="w-5 h-5 text-primary" />
+                <h2 className="font-heading text-lg font-semibold">Pay instantly online</h2>
+              </div>
+              <p className="text-sm text-muted-foreground mb-4">
+                Pay with card, instant EFT, or mobile money via Paystack — secure & fast. Your invoice updates automatically.
+              </p>
+              <Button onClick={handlePayOnline} disabled={paying} size="lg" className="w-full sm:w-auto">
+                {paying ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <CreditCard className="w-4 h-4 mr-2" />}
+                Pay {fmt(Number(invoice.total), invoice.currency)} now
+              </Button>
+            </Card>
+
           <Card className="p-6 card-gradient border-border">
             <div className="flex items-center gap-2 mb-4">
               <Building2 className="w-5 h-5 text-primary" />
@@ -140,6 +215,7 @@ const InvoiceDetail = () => {
               Once your EFT clears, we'll mark the invoice as paid (typically within 1 business day). Send proof of payment to <a href="mailto:sales@nativedigital.co.za" className="text-primary hover:underline">sales@nativedigital.co.za</a> to speed it up.
             </p>
           </Card>
+          </>
         )}
       </main>
     </div>
