@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import ClientZoneNav from '@/components/ClientZoneNav';
 import { Card } from '@/components/ui/card';
@@ -7,14 +7,17 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { BANKING_DETAILS } from '@/lib/banking';
-import { ArrowLeft, Loader2, Copy, Building2, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Loader2, Copy, Building2, CheckCircle2, CreditCard } from 'lucide-react';
 import { useSEO } from '@/hooks/useSEO';
 
 const InvoiceDetail = () => {
   const { id } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { toast } = useToast();
   const [invoice, setInvoice] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [paying, setPaying] = useState(false);
+  const [verifying, setVerifying] = useState(false);
 
   useSEO({ title: 'Invoice | Native Digital Media', description: 'View and pay your invoice.', canonical: `/client/invoice/${id}` });
 
