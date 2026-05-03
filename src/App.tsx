@@ -18,6 +18,7 @@ import SEODurban from "./pages/SEODurban";
 import GoogleAdsDurban from "./pages/GoogleAdsDurban";
 import { AuthProvider } from "./hooks/useAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ChatWidget from "./components/ChatWidget";
 
 const queryClient = new QueryClient();
 
