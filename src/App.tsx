@@ -11,6 +11,7 @@ import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
 import ClientDashboard from "./pages/ClientDashboard";
 import InvoiceDetail from "./pages/InvoiceDetail";
+import Payments from "./pages/Payments";
 import AdminPanel from "./pages/AdminPanel";
 import { AuthProvider } from "./hooks/useAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/client" element={<ProtectedRoute><ClientDashboard /></ProtectedRoute>} />
+            <Route path="/client/payments" element={<ProtectedRoute><Payments /></ProtectedRoute>} />
             <Route path="/client/invoice/:id" element={<ProtectedRoute><InvoiceDetail /></ProtectedRoute>} />
             <Route path="/admin" element={<ProtectedRoute requireAdmin><AdminPanel /></ProtectedRoute>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

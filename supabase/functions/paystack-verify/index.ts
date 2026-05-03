@@ -50,10 +50,9 @@ Deno.serve(async (req) => {
     }
 
     const txn = verifyData.data;
-    const invoiceId = txn.metadata?.invoice_id as string | undefined;
-    if (!invoiceId) {
-      return new Response(JSON.stringify({ error: 'Missing invoice metadata' }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
-    }
+    const meta = txn.metadata || {};
+    const invoiceId = meta.invoice_id as string | undefined;
+    const isAdhoc = !!meta.adhoc;
 
     if (txn.status !== 'success') {
       return new Response(JSON.stringify({ status: txn.status, message: 'Payment not successful' }), {
@@ -62,11 +61,41 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Use service role to update invoice + insert payment regardless of RLS
     const admin = createClient(
       Deno.env.get('SUPABASE_URL')!,
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
     );
+
+    // Idempotency: check if payment already recorded
+    const { data: existingPayment } = await admin
+      .from('payments').select('id').eq('reference', txn.reference).maybeSingle();
+    if (existingPayment) {
+      return new Response(JSON.stringify({ status: 'success', invoice_id: invoiceId, adhoc: isAdhoc, already_recorded: true }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    if (isAdhoc) {
+      if (meta.client_user_id && meta.client_user_id !== userId) {
+        return new Response(JSON.stringify({ error: 'User mismatch' }), { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+      await admin.from('payments').insert({
+        client_user_id: userId,
+        amount: txn.amount / 100,
+        currency: txn.currency || 'ZAR',
+        method: 'paystack',
+        reference: txn.reference,
+        description: meta.description || 'Ad-hoc payment',
+        notes: `Paystack ${txn.channel || 'card'} ad-hoc payment`,
+      });
+      return new Response(JSON.stringify({ status: 'success', adhoc: true }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    if (!invoiceId) {
+      return new Response(JSON.stringify({ error: 'Missing invoice metadata' }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+    }
 
     const { data: invoice } = await admin.from('invoices').select('*').eq('id', invoiceId).maybeSingle();
     if (!invoice || invoice.client_user_id !== userId) {
@@ -86,6 +115,7 @@ Deno.serve(async (req) => {
         currency: txn.currency || invoice.currency,
         method: 'paystack',
         reference: txn.reference,
+        description: `Payment for ${invoice.invoice_number}`,
         notes: `Paystack ${txn.channel || 'card'} payment`,
       });
     }
