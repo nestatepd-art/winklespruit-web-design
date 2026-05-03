@@ -128,8 +128,9 @@ export type Database = {
           client_user_id: string
           created_at: string
           currency: string
+          description: string | null
           id: string
-          invoice_id: string
+          invoice_id: string | null
           method: Database["public"]["Enums"]["payment_method"]
           notes: string | null
           paid_at: string
@@ -142,8 +143,9 @@ export type Database = {
           client_user_id: string
           created_at?: string
           currency?: string
+          description?: string | null
           id?: string
-          invoice_id: string
+          invoice_id?: string | null
           method: Database["public"]["Enums"]["payment_method"]
           notes?: string | null
           paid_at?: string
@@ -156,8 +158,9 @@ export type Database = {
           client_user_id?: string
           created_at?: string
           currency?: string
+          description?: string | null
           id?: string
-          invoice_id?: string
+          invoice_id?: string | null
           method?: Database["public"]["Enums"]["payment_method"]
           notes?: string | null
           paid_at?: string
