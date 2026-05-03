@@ -1,6 +1,8 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
+import PainPoints from '@/components/PainPoints';
+import WebsitePackages from '@/components/WebsitePackages';
 import HowItWorks from '@/components/HowItWorks';
 import Pricing from '@/components/Pricing';
 import WhyChooseUs from '@/components/WhyChooseUs';
@@ -15,7 +17,9 @@ const Index = () => {
     <main className="min-h-screen bg-background">
       <Navbar />
       <Hero />
+      <PainPoints />
       <Services />
+      <WebsitePackages />
       <HowItWorks />
       <Pricing />
       <WhyChooseUs />
