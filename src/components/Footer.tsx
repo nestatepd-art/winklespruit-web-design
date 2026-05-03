@@ -81,7 +81,7 @@ const Footer = () => {
             </a>
           </div>
         </div>
-
+        <div className="pt-8 border-t border-border text-center">
           <p className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} Native Digital Media. All rights reserved.
           </p>
