@@ -18,6 +18,7 @@ import SEODurban from "./pages/SEODurban";
 import GoogleAdsDurban from "./pages/GoogleAdsDurban";
 import { AuthProvider } from "./hooks/useAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ChatWidget from "./components/ChatWidget";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <ChatWidget />
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
