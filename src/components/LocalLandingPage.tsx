@@ -172,7 +172,7 @@ const LocalLandingPage = ({
             </div>
             <div className="flex flex-col items-center gap-2">
               <Phone className="w-6 h-6 text-primary" />
-              <span>031 100 0683 / 073 645 6141</span>
+              <span>031 100 0683 / 073 165 3988</span>
             </div>
             <div className="flex flex-col items-center gap-2">
               <Mail className="w-6 h-6 text-primary" />
