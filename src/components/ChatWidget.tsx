@@ -126,7 +126,9 @@ const ChatWidget = () => {
                     : "bg-muted text-foreground",
                 )}
               >
-                <div className="prose prose-sm dark:prose-invert max-w-none [&_p]:my-1 [&_ul]:my-1 [&_ol]:my-1">
+                <div className={cn(
+                  "prose prose-sm max-w-none [&_p]:my-1 [&_ul]:my-1 [&_ol]:my-1 [&_*]:!text-current [&_a]:underline [&_strong]:!text-current",
+                )}>
                   <ReactMarkdown>{m.content}</ReactMarkdown>
                 </div>
               </div>
