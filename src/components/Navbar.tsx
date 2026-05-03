@@ -24,8 +24,8 @@ const Navbar = () => {
             <Link to="/auth" className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1">
               <LogIn className="w-4 h-4" /> Client Zone
             </Link>
-            <Button variant="default" size="sm" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-              Get Started
+            <Button variant="default" size="sm" asChild>
+              <a href="/#contact">Get Started</a>
             </Button>
           </div>
           
@@ -49,8 +49,8 @@ const Navbar = () => {
               <Link to="/auth" className="text-muted-foreground hover:text-foreground transition-colors py-2 inline-flex items-center gap-1" onClick={() => setIsOpen(false)}>
                 <LogIn className="w-4 h-4" /> Client Zone
               </Link>
-              <Button variant="default" size="sm" className="w-fit" onClick={() => { setIsOpen(false); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>
-                Get Started
+              <Button variant="default" size="sm" className="w-fit" asChild>
+                <a href="/#contact" onClick={() => setIsOpen(false)}>Get Started</a>
               </Button>
             </div>
           </div>
