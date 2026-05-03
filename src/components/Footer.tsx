@@ -1,5 +1,6 @@
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, Building2, CreditCard } from 'lucide-react';
 import logo from '@/assets/native-digital-logo.png';
+import { BANKING_DETAILS } from '@/lib/banking';
 
 const Footer = () => {
   return (
