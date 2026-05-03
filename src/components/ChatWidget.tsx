@@ -120,14 +120,14 @@ const ChatWidget = () => {
               <div
                 key={i}
                 className={cn(
-                   "max-w-[85%] rounded-2xl px-4 py-3 text-[15px] font-medium leading-6 tracking-normal shadow-card",
+                   "max-w-[85%] rounded-2xl px-4 py-3 text-base leading-7 tracking-normal shadow-card subpixel-antialiased",
                   m.role === "user"
-                     ? "ml-auto bg-primary text-primary-foreground"
-                     : "bg-card text-card-foreground border border-border",
+                     ? "ml-auto bg-primary text-primary-foreground font-medium"
+                     : "bg-card text-foreground border border-border font-semibold",
                 )}
               >
                 <div className={cn(
-                   "prose prose-sm max-w-none antialiased [&_p]:my-1 [&_ul]:my-1 [&_ol]:my-1 [&_*]:!text-current [&_a]:font-semibold [&_a]:underline [&_strong]:!font-bold [&_strong]:!text-current",
+                   "max-w-none [&_p]:my-1 [&_ul]:my-1 [&_ol]:my-1 [&_*]:!text-current [&_a]:font-bold [&_a]:underline [&_strong]:!font-extrabold [&_strong]:!text-current",
                 )}>
                   <ReactMarkdown>{m.content}</ReactMarkdown>
                 </div>
