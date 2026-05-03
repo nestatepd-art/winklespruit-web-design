@@ -1,4 +1,4 @@
-import { Globe, Code, Search, TrendingUp, Zap, Shield, Target, Share2, ArrowRight, Check } from 'lucide-react';
+import { Globe, Code, Search, TrendingUp, Zap, Shield, Target, Share2, ArrowRight, Check, Server } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import teamCollab from '@/assets/team-collab.jpg';
 
@@ -56,6 +56,18 @@ const services = [
     icon: Shield,
     title: "Website Maintenance",
     description: "Ongoing support and maintenance to keep your website secure, updated, and running smoothly."
+  },
+  {
+    icon: Server,
+    title: "Web Hosting",
+    description: "Fast, secure South African hosting with everything you need to keep your site online and protected.",
+    bullets: [
+      "99.9% uptime SLA on SSD infrastructure",
+      "Free SSL certificate & daily backups",
+      "Business email hosting (yourname@yourdomain)",
+      "Domain registration & DNS management",
+      "Managed updates, security & malware scans"
+    ]
   }
 ];
 

@@ -24,6 +24,7 @@ OUR PACKAGES (single source of truth — never invent prices)
 ADD-ON SERVICES
 - SEO retainer (Durban-focused): from R2,500/month
 - Google Ads management: from R3,000/month
+- Web Hosting (SA-based): from R150/month — 99.9% uptime, free SSL, daily backups, business email, domain & DNS management
 - Free AI website audit available on the homepage
 
 OUR CASE STUDIES
@@ -36,7 +37,7 @@ YOUR JOB
 - Answer questions about services, pricing, process, timelines (typical site: 2–3 weeks).
 - QUALIFY leads: ask for their name, business, what they need, and the best email/phone to reach them.
 - Once you have name + email (or phone), tell them a human will follow up within 24 hours.
-- If asked about something outside our services (e.g. mobile apps, hosting, etc.), be honest and suggest they speak to the team.
+- If asked about something outside our services (e.g. mobile apps), be honest and suggest they speak to the team.
 - Never make up case study results, client names, or guarantee rankings. Use markdown for formatting (bold, lists).`;
 
 interface ChatBody {
