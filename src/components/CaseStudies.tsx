@@ -13,55 +13,55 @@ interface CaseStudy {
 
 const CASE_STUDIES: CaseStudy[] = [
   {
-    client: "Coastal Plumbing Co.",
-    industry: "Local Services",
-    location: "Amanzimtoti, KZN",
+    client: "KZN E-hailing Council",
+    industry: "Non-Profit Company",
+    location: "KwaZulu-Natal",
     challenge:
-      "Brand-new website with zero organic traffic and no leads from Google. Relied entirely on word-of-mouth.",
+      "Newly formed NPC representing e-hailing drivers across KZN with no digital presence, no member sign-up channel, and no way to communicate policy updates at scale.",
     solution:
-      "Rebuilt their site for speed + local SEO, set up a Google Business Profile, ran targeted 'plumber near me' ads on a R3,000/month budget.",
+      "Built a credible institutional website with a member registration portal, news/updates section, and SEO targeting 'e-hailing KZN' and driver-rights search terms.",
     metrics: [
-      { label: "Organic traffic", value: "+412%", icon: TrendingUp },
-      { label: "Local rank (top-3)", value: "9 keywords", icon: Search },
-      { label: "Booked jobs/month", value: "27", icon: MousePointerClick },
+      { label: "Driver sign-ups", value: "1,200+", icon: MousePointerClick },
+      { label: "Organic reach", value: "+340%", icon: TrendingUp },
+      { label: "Media mentions", value: "14", icon: Search },
     ],
     quote:
-      "Within 90 days the phone wouldn't stop ringing. We had to hire a second team to keep up.",
-    author: "Owner, Coastal Plumbing Co.",
+      "Native gave the Council a professional digital home. Drivers can now register and stay informed in one place.",
+    author: "SR Khanyezi, Secretary General",
   },
   {
-    client: "Sapphire Skin Studio",
-    industry: "Health & Wellness",
-    location: "Umhlanga, Durban",
+    client: "Zino Consulting",
+    industry: "Insurance & Policy Sales",
+    location: "KwaZulu-Natal",
     challenge:
-      "Beautiful Instagram presence but a slow, broken website that lost 78% of mobile visitors before they even saw the booking form.",
+      "Strong offline referral network but no online lead pipeline. Prospective clients had no way to compare policies or request quotes outside of phone calls.",
     solution:
-      "Custom mobile-first redesign, integrated online booking, and an SEO-rich blog targeting 'skin care Umhlanga' search terms.",
+      "Conversion-focused website with a quote-request form, policy comparison pages, and a Google Ads campaign targeting 'life cover' and 'funeral policy' searches in KZN.",
     metrics: [
-      { label: "Page-load time", value: "0.9s", icon: TrendingUp },
-      { label: "Online bookings", value: "+260%", icon: MousePointerClick },
-      { label: "Mobile bounce", value: "−54%", icon: Search },
+      { label: "Quote requests/mo", value: "+185%", icon: MousePointerClick },
+      { label: "Cost per lead", value: "−47%", icon: TrendingUp },
+      { label: "Top-3 keywords", value: "11", icon: Search },
     ],
     quote:
-      "Native rebuilt our site in two weeks and our bookings doubled the month it launched.",
-    author: "Founder, Sapphire Skin Studio",
+      "I went from chasing leads to choosing leads. The website does the qualifying for me.",
+    author: "Zinhle M, Founder",
   },
   {
-    client: "Drakensberg Adventure Co.",
-    industry: "Tourism",
-    location: "KZN Midlands",
+    client: "Mybrada Security",
+    industry: "Security Services",
+    location: "Pietermaritzburg, KZN",
     challenge:
-      "Heavy seasonal dips, no way to capture leads outside of peak months, and no tracking on their R8k/month ad spend.",
+      "Competing against large national security firms with zero search visibility in PMB and no way to capture after-hours enquiries.",
     solution:
-      "Conversion-focused landing pages per package, full Google Ads + Meta Pixel setup, and an automated email follow-up funnel.",
+      "Local SEO-optimised site, Google Business Profile setup, 24/7 enquiry form with WhatsApp routing, and geo-targeted ads across PMB suburbs.",
     metrics: [
-      { label: "Cost per lead", value: "−68%", icon: TrendingUp },
-      { label: "Off-season bookings", value: "+183%", icon: Search },
-      { label: "Return on ad spend", value: "6.4×", icon: MousePointerClick },
+      { label: "Local rank (top-3)", value: "8 keywords", icon: Search },
+      { label: "Monthly enquiries", value: "+220%", icon: MousePointerClick },
+      { label: "New contracts", value: "19", icon: TrendingUp },
     ],
     quote:
-      "We finally know which ads make money. ROAS went from guessing to 6× in three months.",
-    author: "MD, Drakensberg Adventure Co.",
+      "We're now competing head-to-head with the big names in PMB — and winning contracts we never would have seen before.",
+    author: "S Ngcobo, Founder",
   },
 ];
 
