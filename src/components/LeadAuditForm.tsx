@@ -179,7 +179,7 @@ const LeadAuditForm = () => {
                 <div>
                   <h4 className="font-heading font-semibold mb-1">Phone</h4>
                   <p className="text-muted-foreground">031 100 0683</p>
-                  <p className="text-muted-foreground">073 645 6141</p>
+                  <p className="text-muted-foreground">073 165 3988</p>
                 </div>
               </div>
 

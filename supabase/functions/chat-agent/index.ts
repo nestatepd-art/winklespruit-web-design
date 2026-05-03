@@ -12,7 +12,7 @@ const SYSTEM_PROMPT = `You are "Nia", the friendly AI assistant for Native Digit
 
 ABOUT US
 - Office: 10 Winklespruit Road, Winklespruit, Durban
-- Phone: 031 100 0683 / 073 645 6141
+- Phone: 031 100 0683 / 073 165 3988
 - Email: sales@nativedigital.co.za
 - We serve clients across Durban, KZN, and Pietermaritzburg.
 
