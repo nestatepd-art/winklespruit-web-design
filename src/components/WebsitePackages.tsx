@@ -48,7 +48,7 @@ const PACKAGES = [
 
 const WebsitePackages = () => {
   return (
-    <section className="py-24 px-4 bg-secondary/30">
+    <section id="pricing" className="py-24 px-4 bg-secondary/30">
       <div className="container mx-auto max-w-6xl">
         <div className="mb-14 animate-fade-up">
           <span className="text-primary font-medium text-sm uppercase tracking-wider">What we build</span>
