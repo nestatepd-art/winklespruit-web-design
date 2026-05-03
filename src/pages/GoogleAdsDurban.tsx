@@ -5,8 +5,8 @@ const GoogleAdsDurban = () => (
     service="Google Ads"
     city="Durban"
     slug="google-ads-durban"
-    title="Google Ads Durban | Profitable PPC from R750/mo — Native Digital"
-    description="Google Ads management in Durban that delivers ROI. Campaign setup, A/B testing, conversion tracking. From R750/month. Free AI audit included."
+    title="Google Ads Durban | Profitable PPC from R3,000/mo — Native Digital"
+    description="Google Ads management in Durban that delivers ROI. Campaign setup, A/B testing, conversion tracking. From R3,000/month. Free AI audit included."
     hero={{
       eyebrow: "Google Ads · Durban",
       headline: "Google Ads in Durban That |Print Money, Not Burn It",
@@ -20,7 +20,7 @@ const GoogleAdsDurban = () => (
       "Transparent monthly ROAS reporting",
       "We don't profit from your ad spend — flat fee",
     ]}
-    priceFrom="From R750/mo"
+    priceFrom="From R3,000/mo"
     priceNote="Management fee only · Ad spend billed separately by Google."
   />
 );

@@ -131,14 +131,14 @@ const LocalLandingPage = ({
           </div>
           <div className="p-8 rounded-3xl card-gradient border border-primary/40 shadow-lg shadow-primary/10 animate-fade-up-delay-2">
             <span className="text-primary text-xs font-semibold uppercase tracking-wider">
-              Limited Time Special — 75% OFF
+              Pricing
             </span>
             <p className="font-heading text-5xl font-bold gradient-text mt-3">
               {priceFrom}
             </p>
             <p className="text-muted-foreground mt-2 mb-6">{priceNote}</p>
             <Button variant="hero" size="lg" className="w-full" asChild>
-              <a href="#contact">Claim This Price</a>
+              <a href="#contact">Get Started</a>
             </Button>
             <p className="text-xs text-muted-foreground mt-4 text-center">
               No long-term contract. Cancel anytime.
