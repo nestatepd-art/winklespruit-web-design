@@ -4,7 +4,6 @@ import Services from '@/components/Services';
 import PainPoints from '@/components/PainPoints';
 import WebsitePackages from '@/components/WebsitePackages';
 import HowItWorks from '@/components/HowItWorks';
-import Pricing from '@/components/Pricing';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import CaseStudies from '@/components/CaseStudies';
 import LeadAuditForm from '@/components/LeadAuditForm';
@@ -21,7 +20,6 @@ const Index = () => {
       <Services />
       <WebsitePackages />
       <HowItWorks />
-      <Pricing />
       <WhyChooseUs />
       <CaseStudies />
       <LeadAuditForm />
