@@ -123,7 +123,7 @@ const ChatWidget = () => {
                    "max-w-[85%] rounded-2xl px-4 py-3 text-[15px] font-medium leading-6 tracking-normal shadow-card",
                   m.role === "user"
                      ? "ml-auto bg-primary text-primary-foreground"
-                     : "bg-card text-card-foreground border border-primary/30",
+                     : "bg-foreground text-background border border-primary/30",
                 )}
               >
                 <div className={cn(
