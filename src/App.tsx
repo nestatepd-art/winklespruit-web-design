@@ -13,6 +13,9 @@ import ClientDashboard from "./pages/ClientDashboard";
 import InvoiceDetail from "./pages/InvoiceDetail";
 import Payments from "./pages/Payments";
 import AdminPanel from "./pages/AdminPanel";
+import WebDesignKZN from "./pages/WebDesignKZN";
+import SEODurban from "./pages/SEODurban";
+import GoogleAdsDurban from "./pages/GoogleAdsDurban";
 import { AuthProvider } from "./hooks/useAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -27,6 +30,9 @@ const App = () => (
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/web-design-kzn" element={<WebDesignKZN />} />
+            <Route path="/seo-durban" element={<SEODurban />} />
+            <Route path="/google-ads-durban" element={<GoogleAdsDurban />} />
             <Route path="/blog" element={<BlogIndex />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/auth" element={<Auth />} />
