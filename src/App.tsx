@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,7 +19,9 @@ import SEODurban from "./pages/SEODurban";
 import GoogleAdsDurban from "./pages/GoogleAdsDurban";
 import { AuthProvider } from "./hooks/useAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
-import ChatWidget from "./components/ChatWidget";
+
+// Lazy-load chat widget — pulls in react-markdown (~70 KB) only when needed
+const ChatWidget = lazy(() => import("./components/ChatWidget"));
 
 const queryClient = new QueryClient();
 
