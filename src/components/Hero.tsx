@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles, ShieldCheck, Zap } from 'lucide-react';
-import heroDashboard from '@/assets/hero-dashboard.jpg';
+import heroDashboard from '@/assets/hero-dashboard.webp';
 
 const Hero = () => {
   return (

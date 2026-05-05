@@ -1,5 +1,5 @@
 import { ClipboardList, Sparkles, Rocket, LineChart } from 'lucide-react';
-import processVisual from '@/assets/process-visual.jpg';
+import processVisual from '@/assets/process-visual.webp';
 
 const steps = [
   {

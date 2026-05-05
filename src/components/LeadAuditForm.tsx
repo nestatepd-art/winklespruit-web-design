@@ -13,7 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Send, MapPin, Phone, Mail, Sparkles, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { trackLeadConversion } from "@/lib/tracking";
-import auditVisual from "@/assets/ai-audit-visual.jpg";
+import auditVisual from "@/assets/ai-audit-visual.webp";
 
 interface AuditResult {
   score?: number;
