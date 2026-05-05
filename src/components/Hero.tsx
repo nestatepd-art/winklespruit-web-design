@@ -79,6 +79,8 @@ const Hero = () => {
                 alt="AI-powered analytics dashboard preview showing website performance metrics"
                 width={1280}
                 height={960}
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-auto animate-float"
               />
             </div>
