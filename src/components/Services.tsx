@@ -1,6 +1,6 @@
 import { Globe, Code, Search, TrendingUp, Zap, Shield, Target, Share2, ArrowRight, Check, Server } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import teamCollab from '@/assets/team-collab.jpg';
+import teamCollab from '@/assets/team-collab.webp';
 
 const services = [
   {
