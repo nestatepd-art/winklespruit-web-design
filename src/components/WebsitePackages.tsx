@@ -17,6 +17,20 @@ const PACKAGES = [
     popular: false,
   },
   {
+    name: 'Starter Retainer',
+    price: 'R369/month — no upfront fees',
+    blurb: 'All the benefits of our Starter Site with zero upfront cost. Spread the build across an affordable monthly retainer.',
+    features: [
+      '5 professional pages',
+      'Mobile-first design',
+      'Google Business Profile setup',
+      'Basic local SEO',
+      'WhatsApp & contact integration',
+      '1 month free support',
+    ],
+    popular: false,
+  },
+  {
     name: 'Growth Site',
     price: 'From R8,500 once-off + R2,500/mo',
     blurb: 'For businesses ready to use their website as a lead-generation machine. Built to rank, capture leads, and convert.',
