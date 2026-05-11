@@ -186,7 +186,7 @@ serve(async (req) => {
                   <p><strong>Phone:</strong> ${phoneMatch?.[0] ?? "—"}</p>
                   <p><strong>Page:</strong> ${body.sourcePage ?? "—"}</p>
                   <h3>Conversation</h3>
-                  <pre style="background:#f5f5f5;padding:12px;white-space:pre-wrap;font-family:inherit">${transcript.replace(/</g, "&lt;")}</pre>
+                  <pre style="background:#f5f5f5;padding:12px;white-space:pre-wrap;font-family:inherit">${transcript.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;")}</pre>
                 `,
               });
             } catch (e) {
@@ -203,7 +203,7 @@ serve(async (req) => {
     });
   } catch (e) {
     console.error("chat-agent error:", e);
-    return new Response(JSON.stringify({ error: (e as Error).message }), {
+    return new Response(JSON.stringify({ error: "Internal server error" }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }

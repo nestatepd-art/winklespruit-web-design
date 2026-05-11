@@ -162,20 +162,28 @@ serve(async (req) => {
     // 3) Email notification via Resend (if configured)
     if (RESEND_API_KEY) {
       try {
+        const esc = (s: string) =>
+          String(s ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+
         const auditHtml = auditResult
-          ? `<h3>AI Audit (Score: ${auditResult.score ?? "N/A"})</h3>
-             <p>${auditResult.summary ?? ""}</p>
-             <ul>${(auditResult.recommendations || []).map((r) => `<li>${r}</li>`).join("")}</ul>`
-          : `<p><em>No AI audit generated${website ? ` (${auditError ?? "no result"})` : " (no website provided)"}.</em></p>`;
+          ? `<h3>AI Audit (Score: ${esc(String(auditResult.score ?? "N/A"))})</h3>
+             <p>${esc(auditResult.summary ?? "")}</p>
+             <ul>${(auditResult.recommendations || []).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>`
+          : `<p><em>No AI audit generated${website ? ` (${esc(auditError ?? "no result")})` : " (no website provided)"}.</em></p>`;
 
         const html = `
           <h2>New Lead from Native Digital Media</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ""}
-          ${website ? `<p><strong>Website:</strong> ${website}</p>` : ""}
-          ${businessType ? `<p><strong>Business type:</strong> ${businessType}</p>` : ""}
-          ${message ? `<p><strong>Message:</strong><br/>${message.replace(/\n/g, "<br/>")}</p>` : ""}
+          <p><strong>Name:</strong> ${esc(name)}</p>
+          <p><strong>Email:</strong> ${esc(email)}</p>
+          ${phone ? `<p><strong>Phone:</strong> ${esc(phone)}</p>` : ""}
+          ${website ? `<p><strong>Website:</strong> ${esc(website)}</p>` : ""}
+          ${businessType ? `<p><strong>Business type:</strong> ${esc(businessType)}</p>` : ""}
+          ${message ? `<p><strong>Message:</strong><br/>${esc(message).replace(/\n/g, "<br/>")}</p>` : ""}
           <hr/>
           ${auditHtml}
         `;
@@ -215,7 +223,7 @@ serve(async (req) => {
   } catch (e) {
     console.error("run-ai-audit fatal:", e);
     return new Response(
-      JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }),
+      JSON.stringify({ error: "Internal server error" }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   }
