@@ -16,87 +16,94 @@ interface ContactEmailRequest {
   message: string;
 }
 
-const handler = async (req: Request): Promise<Response> => {
-  console.log("Received request to send-contact-email function");
+const escapeHtml = (s: string) =>
+  String(s ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 
-  // Handle CORS preflight requests
+const isValidEmail = (e: string) =>
+  typeof e === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e) && e.length <= 255;
+
+const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
     const { name, email, phone, message }: ContactEmailRequest = await req.json();
-    
-    console.log("Processing contact form submission:", { name, email, phone: phone || "not provided" });
 
-    // Validate required fields
     if (!name || !email || !message) {
-      console.error("Missing required fields");
       return new Response(
         JSON.stringify({ error: "Missing required fields: name, email, and message are required" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
     }
 
-    // Send email to sales team
+    if (!isValidEmail(email)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid email address" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    // Length caps
+    const safeName = String(name).slice(0, 100);
+    const safePhone = phone ? String(phone).slice(0, 30) : "";
+    const safeMessage = String(message).slice(0, 5000);
+
+    // HTML-escape every user-supplied field before interpolation
+    const eName = escapeHtml(safeName);
+    const eEmail = escapeHtml(email);
+    const ePhone = safePhone ? escapeHtml(safePhone) : "Not provided";
+    const eMessage = escapeHtml(safeMessage).replace(/\n/g, "<br>");
+
     const emailResponse = await resend.emails.send({
       from: "Native Digital <noreply@nativedigital.co.za>",
       to: ["sales@nativedigital.co.za"],
-      subject: `New Contact Form Submission from ${name}`,
+      subject: `New Contact Form Submission from ${safeName}`.slice(0, 150),
       html: `
         <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
+        <p><strong>Name:</strong> ${eName}</p>
+        <p><strong>Email:</strong> ${eEmail}</p>
+        <p><strong>Phone:</strong> ${ePhone}</p>
         <h3>Message:</h3>
-        <p>${message.replace(/\n/g, "<br>")}</p>
+        <p>${eMessage}</p>
       `,
       reply_to: email,
     });
 
-    console.log("Email sent successfully to sales@nativedigital.co.za:", emailResponse);
-
-    // Send confirmation email to the user
     const confirmationResponse = await resend.emails.send({
       from: "Native Digital <noreply@nativedigital.co.za>",
       to: [email],
       subject: "We received your message!",
       html: `
-        <h2>Thank you for contacting Native Digital, ${name}!</h2>
+        <h2>Thank you for contacting Native Digital, ${eName}!</h2>
         <p>We have received your message and will get back to you within 24 hours.</p>
         <p>Here's a copy of your message:</p>
         <blockquote style="background-color: #f5f5f5; padding: 15px; border-left: 4px solid #4f46e5;">
-          ${message.replace(/\n/g, "<br>")}
+          ${eMessage}
         </blockquote>
         <p>Best regards,<br>The Native Digital Team</p>
       `,
     });
 
-    console.log("Confirmation email sent to user:", confirmationResponse);
-
     return new Response(
-      JSON.stringify({ 
-        success: true, 
+      JSON.stringify({
+        success: true,
         message: "Email sent successfully",
         salesEmail: emailResponse,
-        confirmationEmail: confirmationResponse
+        confirmationEmail: confirmationResponse,
       }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      }
+      { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
     );
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error in send-contact-email function:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      }
+      JSON.stringify({ error: "Internal server error" }),
+      { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
     );
   }
 };
