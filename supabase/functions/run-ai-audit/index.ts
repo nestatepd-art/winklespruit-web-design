@@ -159,56 +159,30 @@ serve(async (req) => {
       console.error("Lead insert failed:", insertError);
     }
 
-    // 3) Email notification via Resend (if configured)
-    if (RESEND_API_KEY) {
-      try {
-        const esc = (s: string) =>
-          String(s ?? "")
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#39;");
-
-        const auditHtml = auditResult
-          ? `<h3>AI Audit (Score: ${esc(String(auditResult.score ?? "N/A"))})</h3>
-             <p>${esc(auditResult.summary ?? "")}</p>
-             <ul>${(auditResult.recommendations || []).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>`
-          : `<p><em>No AI audit generated${website ? ` (${esc(auditError ?? "no result")})` : " (no website provided)"}.</em></p>`;
-
-        const html = `
-          <h2>New Lead from Native Digital Media</h2>
-          <p><strong>Name:</strong> ${esc(name)}</p>
-          <p><strong>Email:</strong> ${esc(email)}</p>
-          ${phone ? `<p><strong>Phone:</strong> ${esc(phone)}</p>` : ""}
-          ${website ? `<p><strong>Website:</strong> ${esc(website)}</p>` : ""}
-          ${businessType ? `<p><strong>Business type:</strong> ${esc(businessType)}</p>` : ""}
-          ${message ? `<p><strong>Message:</strong><br/>${esc(message).replace(/\n/g, "<br/>")}</p>` : ""}
-          <hr/>
-          ${auditHtml}
-        `;
-
-        const emailResp = await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${RESEND_API_KEY}`,
-            "Content-Type": "application/json",
+    // 3) Email notification via Lovable transactional email
+    try {
+      await supabase.functions.invoke('send-transactional-email', {
+        body: {
+          templateName: 'new-lead-notification',
+          recipientEmail: 'sales@nativedigital.co.za',
+          idempotencyKey: `lead-notify-${leadRow?.id ?? crypto.randomUUID()}`,
+          templateData: {
+            name,
+            email,
+            phone: phone || undefined,
+            website: website || undefined,
+            businessType: businessType || undefined,
+            message: message || undefined,
+            source: 'homepage',
+            auditScore: auditResult?.score,
+            auditSummary: auditResult?.summary,
+            auditRecommendations: auditResult?.recommendations,
+            auditError: auditError || undefined,
           },
-          body: JSON.stringify({
-            from: "Native Digital Media <onboarding@resend.dev>",
-            to: ["sales@nativedigital.co.za"],
-            reply_to: email,
-            subject: `New Lead: ${name}${website ? ` — ${website}` : ""}`,
-            html,
-          }),
-        });
-
-        if (!emailResp.ok) {
-          console.error("Resend error:", emailResp.status, await emailResp.text());
-        }
-      } catch (e) {
-        console.error("Email send failed:", e);
-      }
+        },
+      });
+    } catch (e) {
+      console.error('Lead notification email failed:', e);
     }
 
     return new Response(

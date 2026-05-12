@@ -41,32 +41,53 @@ const SignupForm = () => {
     setIsSubmitting(true);
     
     try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone || undefined,
-          message: formData.message
-        }
+      const leadId = crypto.randomUUID();
+
+      // Save lead
+      const { error: leadError } = await supabase.from('leads').insert({
+        id: leadId,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || null,
+        message: formData.message,
+        source: 'contact-form',
       });
 
-      if (error) {
-        console.error('Error sending email:', error);
-        toast({
-          title: "Failed to send message",
-          description: "Please try again or contact us directly.",
-          variant: "destructive"
-        });
-        setIsSubmitting(false);
-        return;
+      if (leadError) {
+        console.error('Lead insert failed:', leadError);
       }
 
-      console.log('Email sent successfully:', data);
+      // Notify sales
+      await supabase.functions.invoke('send-transactional-email', {
+        body: {
+          templateName: 'new-lead-notification',
+          recipientEmail: 'sales@nativedigital.co.za',
+          idempotencyKey: `lead-notify-${leadId}`,
+          templateData: {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone || undefined,
+            message: formData.message,
+            source: 'contact-form',
+          },
+        },
+      });
+
+      // Confirm to visitor
+      await supabase.functions.invoke('send-transactional-email', {
+        body: {
+          templateName: 'contact-confirmation',
+          recipientEmail: formData.email,
+          idempotencyKey: `contact-confirm-${leadId}`,
+          templateData: { name: formData.name, message: formData.message },
+        },
+      });
+
       toast({
         title: "Message sent successfully!",
         description: "We'll get back to you within 24 hours."
       });
-      
+
       setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
       console.error('Error:', error);
