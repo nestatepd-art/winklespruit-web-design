@@ -60,27 +60,10 @@ export const SignupEmail = ({
 
 export default SignupEmail
 
-const main = { backgroundColor: '#ffffff', fontFamily: 'Arial, sans-serif' }
-const container = { padding: '20px 25px' }
-const h1 = {
-  fontSize: '22px',
-  fontWeight: 'bold' as const,
-  color: '#000000',
-  margin: '0 0 20px',
-}
-const text = {
-  fontSize: '14px',
-  color: '#55575d',
-  lineHeight: '1.5',
-  margin: '0 0 25px',
-}
-const link = { color: 'inherit', textDecoration: 'underline' }
-const button = {
-  backgroundColor: '#000000',
-  color: '#ffffff',
-  fontSize: '14px',
-  borderRadius: '8px',
-  padding: '12px 20px',
-  textDecoration: 'none',
-}
-const footer = { fontSize: '12px', color: '#999999', margin: '30px 0 0' }
+const main = { backgroundColor: '#ffffff', fontFamily: "'Inter', Arial, sans-serif" }
+const container = { padding: '32px 28px', maxWidth: '560px' }
+const h1 = { fontSize: '24px', fontWeight: 'bold' as const, color: '#0f172a', margin: '0 0 20px', fontFamily: "'Space Grotesk', Arial, sans-serif" }
+const text = { fontSize: '15px', color: '#475569', lineHeight: '1.6', margin: '0 0 24px' }
+const link = { color: '#3b82f6', textDecoration: 'underline' }
+const button = { background: 'linear-gradient(135deg, #3b82f6 0%, #7c3aed 100%)', color: '#ffffff', fontSize: '15px', fontWeight: 600, borderRadius: '12px', padding: '14px 24px', textDecoration: 'none', display: 'inline-block' }
+const footer = { fontSize: '12px', color: '#94a3b8', margin: '32px 0 0' }
