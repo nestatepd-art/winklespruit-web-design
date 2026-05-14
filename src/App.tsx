@@ -17,6 +17,7 @@ import AdminPanel from "./pages/AdminPanel";
 import WebDesignKZN from "./pages/WebDesignKZN";
 import SEODurban from "./pages/SEODurban";
 import GoogleAdsDurban from "./pages/GoogleAdsDurban";
+import WebsiteDevelopmentHosting from "./pages/WebsiteDevelopmentHosting";
 import Unsubscribe from "./pages/Unsubscribe";
 import { AuthProvider } from "./hooks/useAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/web-design-kzn" element={<WebDesignKZN />} />
             <Route path="/seo-durban" element={<SEODurban />} />
             <Route path="/google-ads-durban" element={<GoogleAdsDurban />} />
+            <Route path="/website-development-hosting" element={<WebsiteDevelopmentHosting />} />
             <Route path="/blog" element={<BlogIndex />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/auth" element={<Auth />} />
