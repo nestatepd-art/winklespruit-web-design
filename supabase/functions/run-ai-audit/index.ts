@@ -56,6 +56,7 @@ serve(async (req) => {
 
     const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
     const SERVICE_ROLE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY")!;
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
@@ -159,10 +160,18 @@ serve(async (req) => {
       console.error("Lead insert failed:", insertError);
     }
 
-    // 3) Email notification via Lovable transactional email
+    // 3) Email notification — call send-transactional-email via direct fetch
+    // (supabase.functions.invoke from one edge function to another can drop
+    // auth headers depending on client version; explicit fetch is reliable).
     try {
-      await supabase.functions.invoke('send-transactional-email', {
-        body: {
+      const emailResp = await fetch(`${SUPABASE_URL}/functions/v1/send-transactional-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${ANON_KEY}`,
+          'apikey': ANON_KEY,
+        },
+        body: JSON.stringify({
           templateName: 'new-lead-notification',
           recipientEmail: 'sales@nativedigital.co.za',
           idempotencyKey: `lead-notify-${leadRow?.id ?? crypto.randomUUID()}`,
@@ -179,10 +188,16 @@ serve(async (req) => {
             auditRecommendations: auditResult?.recommendations,
             auditError: auditError || undefined,
           },
-        },
+        }),
       });
+      if (!emailResp.ok) {
+        const txt = await emailResp.text();
+        console.error('Lead notification email failed:', emailResp.status, txt);
+      } else {
+        console.log('Lead notification email enqueued for', leadRow?.id);
+      }
     } catch (e) {
-      console.error('Lead notification email failed:', e);
+      console.error('Lead notification email exception:', e);
     }
 
     return new Response(

@@ -20,4 +20,4 @@ project_id = "ngtfkzvqvoohrtvxkusj"
   [functions.send-contact-email]
     verify_jwt = false
   [functions.send-transactional-email]
-    verify_jwt = true
+    verify_jwt = false
