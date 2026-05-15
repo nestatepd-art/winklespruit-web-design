@@ -159,10 +159,18 @@ serve(async (req) => {
       console.error("Lead insert failed:", insertError);
     }
 
-    // 3) Email notification via Lovable transactional email
+    // 3) Email notification — call send-transactional-email via direct fetch
+    // (supabase.functions.invoke from one edge function to another can drop
+    // auth headers depending on client version; explicit fetch is reliable).
     try {
-      await supabase.functions.invoke('send-transactional-email', {
-        body: {
+      const emailResp = await fetch(`${SUPABASE_URL}/functions/v1/send-transactional-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${SERVICE_ROLE}`,
+          'apikey': SERVICE_ROLE,
+        },
+        body: JSON.stringify({
           templateName: 'new-lead-notification',
           recipientEmail: 'sales@nativedigital.co.za',
           idempotencyKey: `lead-notify-${leadRow?.id ?? crypto.randomUUID()}`,
@@ -179,10 +187,16 @@ serve(async (req) => {
             auditRecommendations: auditResult?.recommendations,
             auditError: auditError || undefined,
           },
-        },
+        }),
       });
+      if (!emailResp.ok) {
+        const txt = await emailResp.text();
+        console.error('Lead notification email failed:', emailResp.status, txt);
+      } else {
+        console.log('Lead notification email enqueued for', leadRow?.id);
+      }
     } catch (e) {
-      console.error('Lead notification email failed:', e);
+      console.error('Lead notification email exception:', e);
     }
 
     return new Response(
