@@ -6,8 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { BANKING_DETAILS } from '@/lib/banking';
-import { ArrowLeft, Loader2, Copy, Building2, CheckCircle2, CreditCard } from 'lucide-react';
+import { ArrowLeft, Loader2, Building2, CheckCircle2, CreditCard } from 'lucide-react';
 import { useSEO } from '@/hooks/useSEO';
 
 const InvoiceDetail = () => {
