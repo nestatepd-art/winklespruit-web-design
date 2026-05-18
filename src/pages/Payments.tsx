@@ -12,7 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { useSEO } from '@/hooks/useSEO';
 import { CreditCard, Wallet, Receipt, Loader2, ArrowRight, Building2, CheckCircle2, Plus } from 'lucide-react';
-import { BANKING_DETAILS } from '@/lib/banking';
+
 
 const fmt = (n: number, c = 'ZAR') => new Intl.NumberFormat('en-ZA', { style: 'currency', currency: c }).format(n);
 
