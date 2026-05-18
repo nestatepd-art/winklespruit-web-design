@@ -46,31 +46,14 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 pt-8 border-t border-border mb-8">
-          <div className="rounded-lg border border-border bg-background/40 p-5">
-            <div className="flex items-center gap-2 mb-3">
-              <Building2 className="w-4 h-4 text-primary" />
-              <h4 className="font-heading font-semibold">Banking Details (EFT)</h4>
-            </div>
-            <ul className="space-y-1.5 text-sm">
-              <li className="flex justify-between gap-4"><span className="text-muted-foreground">Bank</span><span className="font-medium">{BANKING_DETAILS.bank}</span></li>
-              <li className="flex justify-between gap-4"><span className="text-muted-foreground">Account Holder</span><span className="font-medium text-right">{BANKING_DETAILS.accountHolder}</span></li>
-              <li className="flex justify-between gap-4"><span className="text-muted-foreground">Account Number</span><span className="font-mono font-medium">{BANKING_DETAILS.accountNumber}</span></li>
-              <li className="flex justify-between gap-4"><span className="text-muted-foreground">Branch</span><span className="font-medium">{BANKING_DETAILS.branch}</span></li>
-              <li className="flex justify-between gap-4"><span className="text-muted-foreground">Branch Code</span><span className="font-mono font-medium">{BANKING_DETAILS.branchCode}</span></li>
-              <li className="flex justify-between gap-4"><span className="text-muted-foreground">Account Type</span><span className="font-medium">{BANKING_DETAILS.accountType}</span></li>
-            </ul>
-            <p className="text-xs text-muted-foreground mt-3 italic">
-              {BANKING_DETAILS.note} Use your invoice number as reference and email POP to sales@nativedigital.co.za.
-            </p>
-          </div>
-          <div className="rounded-lg border border-primary/30 bg-primary/5 p-5">
-            <div className="flex items-center gap-2 mb-3">
-              <CreditCard className="w-4 h-4 text-primary" />
-              <h4 className="font-heading font-semibold">Pay Online (Recommended)</h4>
+        <div className="pt-8 border-t border-border mb-8">
+          <div className="rounded-lg border border-primary/30 bg-primary/5 p-6 max-w-2xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <CreditCard className="w-5 h-5 text-primary" />
+              <h4 className="font-heading font-semibold">Secure Online Payments</h4>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              Pay instantly by Card, Instant EFT or Mobile Money via our secure Paystack checkout. Payments reflect immediately — no proof of payment needed.
+              All payments are processed securely via Paystack (Card, Instant EFT, or Mobile Money) or through invoices issued to your client portal. We never publish bank details publicly.
             </p>
             <a
               href="/client/payments"
