@@ -176,42 +176,12 @@ const InvoiceDetail = () => {
             </Card>
 
           <Card className="p-6 card-gradient border-border">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-3">
               <Building2 className="w-5 h-5 text-primary" />
-              <h2 className="font-heading text-lg font-semibold">Pay via EFT / Bank Transfer</h2>
+              <h2 className="font-heading text-lg font-semibold">Need to pay by EFT?</h2>
             </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Use the banking details below. <strong className="text-foreground">Use <code className="bg-muted px-1.5 py-0.5 rounded text-primary">{reference}</code> as your payment reference</strong> so we can match your payment quickly.
-            </p>
-
-            <div className="space-y-3 bg-muted/30 rounded-lg p-4 border border-border">
-              {[
-                ['Bank', BANKING_DETAILS.bank],
-                ['Account holder', BANKING_DETAILS.accountHolder],
-                ['Account number', BANKING_DETAILS.accountNumber],
-                ['Branch', BANKING_DETAILS.branch],
-                ['Branch code', BANKING_DETAILS.branchCode],
-                ['Account type', BANKING_DETAILS.accountType],
-                ['Reference', reference],
-                ['Amount', fmt(Number(invoice.total), invoice.currency)],
-              ].map(([label, value]) => (
-                <div key={label} className="flex items-center justify-between gap-2 text-sm">
-                  <span className="text-muted-foreground">{label}</span>
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium">{value}</span>
-                    <button onClick={() => copy(String(value), label)} className="text-muted-foreground hover:text-primary" aria-label={`Copy ${label}`}>
-                      <Copy className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-xs text-muted-foreground mt-4 italic">
-              {BANKING_DETAILS.note}
-            </p>
-            <p className="text-xs text-muted-foreground mt-2">
-              Once your EFT clears, we'll mark the invoice as paid (typically within 1 business day). Send proof of payment to <a href="mailto:sales@nativedigital.co.za" className="text-primary hover:underline">sales@nativedigital.co.za</a> to speed it up.
+            <p className="text-sm text-muted-foreground">
+              For your security, we no longer publish banking details on the website. If you'd prefer EFT instead of online payment, email <a href="mailto:sales@nativedigital.co.za" className="text-primary hover:underline">sales@nativedigital.co.za</a> with your invoice reference <code className="bg-muted px-1.5 py-0.5 rounded text-primary">{reference}</code> and we'll send you our banking details directly.
             </p>
           </Card>
           </>
