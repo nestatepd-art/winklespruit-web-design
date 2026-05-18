@@ -12,7 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { useSEO } from '@/hooks/useSEO';
 import { CreditCard, Wallet, Receipt, Loader2, ArrowRight, Building2, CheckCircle2, Plus } from 'lucide-react';
-import { BANKING_DETAILS } from '@/lib/banking';
+
 
 const fmt = (n: number, c = 'ZAR') => new Intl.NumberFormat('en-ZA', { style: 'currency', currency: c }).format(n);
 
@@ -295,16 +295,10 @@ const Payments = () => {
               <Card className="p-6 card-gradient border-border">
                 <div className="flex items-center gap-2 mb-3">
                   <Building2 className="w-5 h-5 text-primary" />
-                  <h2 className="font-heading text-base font-semibold">Bank Transfer (EFT)</h2>
+                  <h2 className="font-heading text-base font-semibold">Prefer EFT?</h2>
                 </div>
-                <div className="space-y-1.5 text-xs">
-                  <div className="flex justify-between"><span className="text-muted-foreground">Bank</span><span className="font-medium">{BANKING_DETAILS.bank}</span></div>
-                  <div className="flex justify-between"><span className="text-muted-foreground">Account</span><span className="font-medium">{BANKING_DETAILS.accountNumber}</span></div>
-                  <div className="flex justify-between"><span className="text-muted-foreground">Branch code</span><span className="font-medium">{BANKING_DETAILS.branchCode}</span></div>
-                  <div className="flex justify-between"><span className="text-muted-foreground">Type</span><span className="font-medium">{BANKING_DETAILS.accountType}</span></div>
-                </div>
-                <p className="text-[11px] text-muted-foreground mt-3 italic">
-                  Use your invoice number as the reference. Email POP to <a href="mailto:sales@nativedigital.co.za" className="text-primary hover:underline">sales@nativedigital.co.za</a>.
+                <p className="text-xs text-muted-foreground">
+                  For security, we no longer publish bank details online. Email <a href="mailto:sales@nativedigital.co.za" className="text-primary hover:underline">sales@nativedigital.co.za</a> with your invoice number and we'll send our banking details directly.
                 </p>
               </Card>
             </div>
