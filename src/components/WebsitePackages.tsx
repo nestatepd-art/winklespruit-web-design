@@ -4,7 +4,8 @@ import { Button } from './ui/button';
 const PACKAGES = [
   {
     name: 'Starter Site',
-    price: 'From R4,500 once-off',
+    price: 'From R2,999 once-off',
+    originalPrice: 'R4,500',
     blurb: 'For businesses with no website or an embarrassingly outdated one. Clean, fast, and optimised to rank locally.',
     features: [
       '5 professional pages',
@@ -89,7 +90,12 @@ const WebsitePackages = () => {
                 </span>
               )}
               <h3 className="font-heading text-2xl font-bold mb-2">{pkg.name}</h3>
-              <p className="text-primary font-semibold mb-4">{pkg.price}</p>
+              <p className="text-primary font-semibold mb-4">
+                {pkg.originalPrice && (
+                  <span className="text-muted-foreground line-through mr-2 font-normal">{pkg.originalPrice}</span>
+                )}
+                {pkg.price}
+              </p>
               <p className="text-muted-foreground text-sm leading-relaxed mb-6">{pkg.blurb}</p>
               <ul className="space-y-3 mb-8">
                 {pkg.features.map((f) => (
