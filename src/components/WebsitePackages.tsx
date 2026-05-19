@@ -4,7 +4,8 @@ import { Button } from './ui/button';
 const PACKAGES = [
   {
     name: 'Starter Site',
-    price: 'From R4,500 once-off',
+    price: 'From R2,999 once-off',
+    originalPrice: 'R4,500',
     blurb: 'For businesses with no website or an embarrassingly outdated one. Clean, fast, and optimised to rank locally.',
     features: [
       '5 professional pages',
