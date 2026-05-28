@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
-import { LogOut, LayoutDashboard, Shield, CreditCard } from 'lucide-react';
+import { LogOut, LayoutDashboard, Shield, CreditCard, Users } from 'lucide-react';
 import logo from '@/assets/native-digital-logo.png';
 
 const ClientZoneNav = () => {
