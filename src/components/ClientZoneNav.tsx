@@ -32,11 +32,18 @@ const ClientZoneNav = () => {
               </Button>
             </Link>
             {role === 'admin' && (
-              <Link to="/admin">
-                <Button variant="ghost" size="sm">
-                  <Shield className="w-4 h-4 mr-2" /> Admin
-                </Button>
-              </Link>
+              <>
+                <Link to="/admin/leads">
+                  <Button variant="ghost" size="sm">
+                    <Users className="w-4 h-4 mr-2" /> Leads
+                  </Button>
+                </Link>
+                <Link to="/admin">
+                  <Button variant="ghost" size="sm">
+                    <Shield className="w-4 h-4 mr-2" /> Admin
+                  </Button>
+                </Link>
+              </>
             )}
             <Button variant="outline" size="sm" onClick={handleSignOut}>
               <LogOut className="w-4 h-4 mr-2" /> Sign out
