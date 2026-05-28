@@ -14,6 +14,7 @@ import ClientDashboard from "./pages/ClientDashboard";
 import InvoiceDetail from "./pages/InvoiceDetail";
 import Payments from "./pages/Payments";
 import AdminPanel from "./pages/AdminPanel";
+import LeadPipeline from "./pages/LeadPipeline";
 import WebDesignKZN from "./pages/WebDesignKZN";
 import SEODurban from "./pages/SEODurban";
 import GoogleAdsDurban from "./pages/GoogleAdsDurban";
