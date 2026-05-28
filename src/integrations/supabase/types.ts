@@ -237,41 +237,56 @@ export type Database = {
       }
       leads: {
         Row: {
+          admin_notes: string | null
           audit_result: Json | null
           business_type: string | null
           created_at: string
           email: string
+          estimated_value: number | null
           id: string
+          last_contacted_at: string | null
           message: string | null
           name: string
+          next_follow_up_at: string | null
           phone: string | null
           source: string | null
+          stage: Database["public"]["Enums"]["lead_stage"]
           updated_at: string
           website: string | null
         }
         Insert: {
+          admin_notes?: string | null
           audit_result?: Json | null
           business_type?: string | null
           created_at?: string
           email: string
+          estimated_value?: number | null
           id?: string
+          last_contacted_at?: string | null
           message?: string | null
           name: string
+          next_follow_up_at?: string | null
           phone?: string | null
           source?: string | null
+          stage?: Database["public"]["Enums"]["lead_stage"]
           updated_at?: string
           website?: string | null
         }
         Update: {
+          admin_notes?: string | null
           audit_result?: Json | null
           business_type?: string | null
           created_at?: string
           email?: string
+          estimated_value?: number | null
           id?: string
+          last_contacted_at?: string | null
           message?: string | null
           name?: string
+          next_follow_up_at?: string | null
           phone?: string | null
           source?: string | null
+          stage?: Database["public"]["Enums"]["lead_stage"]
           updated_at?: string
           website?: string | null
         }
@@ -497,6 +512,13 @@ export type Database = {
     Enums: {
       app_role: "admin" | "client"
       invoice_status: "draft" | "sent" | "paid" | "overdue" | "cancelled"
+      lead_stage:
+        | "new"
+        | "contacted"
+        | "qualified"
+        | "proposal"
+        | "won"
+        | "lost"
       payment_method: "stripe" | "eft" | "other" | "paystack"
       project_stage:
         | "discovery"
@@ -634,6 +656,7 @@ export const Constants = {
     Enums: {
       app_role: ["admin", "client"],
       invoice_status: ["draft", "sent", "paid", "overdue", "cancelled"],
+      lead_stage: ["new", "contacted", "qualified", "proposal", "won", "lost"],
       payment_method: ["stripe", "eft", "other", "paystack"],
       project_stage: [
         "discovery",

@@ -14,6 +14,7 @@ import ClientDashboard from "./pages/ClientDashboard";
 import InvoiceDetail from "./pages/InvoiceDetail";
 import Payments from "./pages/Payments";
 import AdminPanel from "./pages/AdminPanel";
+import LeadPipeline from "./pages/LeadPipeline";
 import WebDesignKZN from "./pages/WebDesignKZN";
 import SEODurban from "./pages/SEODurban";
 import GoogleAdsDurban from "./pages/GoogleAdsDurban";
@@ -48,6 +49,8 @@ const App = () => (
             <Route path="/client/payments" element={<ProtectedRoute><Payments /></ProtectedRoute>} />
             <Route path="/client/invoice/:id" element={<ProtectedRoute><InvoiceDetail /></ProtectedRoute>} />
             <Route path="/admin" element={<ProtectedRoute requireAdmin><AdminPanel /></ProtectedRoute>} />
+            <Route path="/admin/leads" element={<ProtectedRoute requireAdmin><LeadPipeline /></ProtectedRoute>} />
+
             <Route path="/unsubscribe" element={<Unsubscribe />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
