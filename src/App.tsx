@@ -49,6 +49,8 @@ const App = () => (
             <Route path="/client/payments" element={<ProtectedRoute><Payments /></ProtectedRoute>} />
             <Route path="/client/invoice/:id" element={<ProtectedRoute><InvoiceDetail /></ProtectedRoute>} />
             <Route path="/admin" element={<ProtectedRoute requireAdmin><AdminPanel /></ProtectedRoute>} />
+            <Route path="/admin/leads" element={<ProtectedRoute requireAdmin><LeadPipeline /></ProtectedRoute>} />
+
             <Route path="/unsubscribe" element={<Unsubscribe />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
