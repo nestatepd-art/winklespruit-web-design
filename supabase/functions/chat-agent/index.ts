@@ -175,18 +175,23 @@ serve(async (req) => {
           // Notify sales
           if (RESEND_API_KEY) {
             try {
+              const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+              const safePage = esc(body.sourcePage ?? "—");
+              const safeEmail = esc(emailMatch?.[0] ?? "—");
+              const safePhone = esc(phoneMatch?.[0] ?? "—");
+              const safeSubjectEmail = emailMatch ? ` — ${esc(emailMatch[0])}` : "";
               const resend = new Resend(RESEND_API_KEY);
               await resend.emails.send({
                 from: "Native Digital <noreply@nativedigital.co.za>",
                 to: ["sales@nativedigital.co.za"],
-                subject: `🔥 New chat lead${emailMatch ? ` — ${emailMatch[0]}` : ""}`,
+                subject: `🔥 New chat lead${safeSubjectEmail}`,
                 html: `
                   <h2>New lead from chat agent</h2>
-                  <p><strong>Email:</strong> ${emailMatch?.[0] ?? "—"}</p>
-                  <p><strong>Phone:</strong> ${phoneMatch?.[0] ?? "—"}</p>
-                  <p><strong>Page:</strong> ${body.sourcePage ?? "—"}</p>
+                  <p><strong>Email:</strong> ${safeEmail}</p>
+                  <p><strong>Phone:</strong> ${safePhone}</p>
+                  <p><strong>Page:</strong> ${safePage}</p>
                   <h3>Conversation</h3>
-                  <pre style="background:#f5f5f5;padding:12px;white-space:pre-wrap;font-family:inherit">${transcript.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;")}</pre>
+                  <pre style="background:#f5f5f5;padding:12px;white-space:pre-wrap;font-family:inherit">${esc(transcript)}</pre>
                 `,
               });
             } catch (e) {

@@ -30,14 +30,36 @@ function generateToken(): string {
     .join('')
 }
 
-// Auth note: this function uses verify_jwt = true in config.toml, so Supabase's
-// gateway validates the caller's JWT (anon or service_role) before the request
-// reaches this code. No in-function auth check is needed.
+// Auth: this function must only be invoked server-side using the service_role key.
+// We validate the JWT in-function (verify_jwt = false at the gateway).
+function isServiceRoleJwt(authHeader: string | null): boolean {
+  if (!authHeader?.startsWith('Bearer ')) return false
+  const token = authHeader.slice(7)
+  const parts = token.split('.')
+  if (parts.length !== 3) return false
+  try {
+    const payload = JSON.parse(
+      atob(parts[1].replace(/-/g, '+').replace(/_/g, '/'))
+    )
+    return payload?.role === 'service_role'
+  } catch {
+    return false
+  }
+}
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 Deno.serve(async (req) => {
   // Handle CORS preflight
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders })
+  }
+
+  if (!isServiceRoleJwt(req.headers.get('Authorization'))) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+      status: 401,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
   }
 
   const supabaseUrl = Deno.env.get('SUPABASE_URL')
@@ -115,6 +137,16 @@ Deno.serve(async (req) => {
       JSON.stringify({
         error: 'recipientEmail is required (unless the template defines a fixed recipient)',
       }),
+      {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      }
+    )
+  }
+
+  if (!EMAIL_REGEX.test(effectiveRecipient) || effectiveRecipient.length > 254) {
+    return new Response(
+      JSON.stringify({ error: 'Invalid recipient email address' }),
       {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
