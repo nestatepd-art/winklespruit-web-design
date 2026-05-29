@@ -144,6 +144,16 @@ Deno.serve(async (req) => {
     )
   }
 
+  if (!EMAIL_REGEX.test(effectiveRecipient) || effectiveRecipient.length > 254) {
+    return new Response(
+      JSON.stringify({ error: 'Invalid recipient email address' }),
+      {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      }
+    )
+  }
+
   // Create Supabase client with service role (bypasses RLS)
   const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
