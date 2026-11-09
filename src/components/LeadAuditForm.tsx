@@ -127,7 +127,7 @@ const LeadAuditForm = () => {
   };
 
   return (
-    <section id="contact" className="relative py-24 px-4 overflow-hidden">
+    <section id="contact" className="theme-ink relative py-24 px-4 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 -right-32 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
@@ -140,7 +140,7 @@ const LeadAuditForm = () => {
               Get In Touch
             </span>
             <h2 className="font-heading text-4xl md:text-5xl font-bold mt-4 mb-6">
-              Free AI Website <span className="gradient-text">Audit</span>
+              Let’s see what your site is <span className="gradient-text">missing.</span>
             </h2>
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
               Drop your website URL below and our AI will instantly score your site
