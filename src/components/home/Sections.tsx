@@ -1,6 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
-import { Counter, useParallax } from './motion';
-import heroDashboard from '@/assets/hero-dashboard.webp';
+import { Counter } from './motion';
 
 const Eyebrow = ({ n, children }: { n: string; children: string }) => (
   <p className="flex items-center gap-4 text-xs uppercase tracking-[0.2em] text-muted-foreground mb-10">
@@ -23,7 +22,6 @@ export const Positioning = () => (
 );
 
 export const ServicePanels = () => {
-  const img = useParallax(0.06);
   return (
     <section id="services" className="px-4 pb-20 md:pb-32">
       <div className="container mx-auto max-w-7xl px-0 md:px-8">
@@ -39,8 +37,13 @@ export const ServicePanels = () => {
               <li>— Enquiry forms that land straight in your inbox</li>
               <li>— Hosting, SSL and updates handled for you</li>
             </ul>
-            <div ref={img} className="mt-auto pt-10 -mb-24 md:-mb-32">
-              <img src={heroDashboard} alt="Example website dashboard built by Native Digital" loading="lazy" decoding="async" width={1280} height={960} className="rounded-xl border border-border shadow-[var(--shadow-glow)]" />
+            <div className="mt-auto pt-12 grid grid-cols-3 gap-4 border-t border-border">
+              {[['2', 'seconds or less to load'], ['1', 'business day to go live'], ['0', 'upfront on the retainer']].map(([v, l]) => (
+                <div key={l} className="pt-5">
+                  <p className="font-heading text-3xl md:text-4xl text-primary"><Counter value={v} /></p>
+                  <p className="text-xs text-muted-foreground mt-1">{l}</p>
+                </div>
+              ))}
             </div>
           </article>
 

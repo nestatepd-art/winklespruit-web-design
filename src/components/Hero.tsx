@@ -11,7 +11,7 @@ const Hero = () => (
     </div>
 
     <div className="container relative mx-auto max-w-7xl px-0 md:px-8">
-      <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-secondary font-medium mb-8 word" style={{ animationDelay: '0s' }}>
+      <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-secondary font-medium mb-8 rise" style={{ animationDelay: '0s' }}>
         Web development & SEO · Winklespruit, KZN
       </p>
 
@@ -24,11 +24,11 @@ const Hero = () => (
       </h1>
 
       <div className="mt-10 md:mt-14 grid md:grid-cols-12 gap-8 items-end">
-        <p className="md:col-span-6 text-lg md:text-xl text-muted-foreground leading-relaxed word" style={{ animationDelay: '1.1s' }}>
+        <p className="md:col-span-6 text-lg md:text-xl text-muted-foreground leading-relaxed rise" style={{ animationDelay: '1.1s' }}>
           We design fast, mobile-first websites and do the SEO work that puts South African
           businesses in front of local customers — usually live by the next business day.
         </p>
-        <div className="md:col-span-6 flex flex-col sm:flex-row sm:justify-end items-start sm:items-center gap-5 word" style={{ animationDelay: '1.25s' }}>
+        <div className="md:col-span-6 flex flex-col sm:flex-row sm:justify-end items-start sm:items-center gap-5 rise" style={{ animationDelay: '1.25s' }}>
           <Magnetic>
             <Button variant="hero" size="xl" asChild>
               <a href="#contact">Get a free website & SEO audit <ArrowRight className="ml-2 h-5 w-5" /></a>
@@ -40,7 +40,7 @@ const Hero = () => (
         </div>
       </div>
 
-      <div className="mt-16 md:mt-24 border-t border-foreground/15 pt-5 flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted-foreground word" style={{ animationDelay: '1.4s' }}>
+      <div className="mt-16 md:mt-24 border-t border-foreground/15 pt-5 flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted-foreground rise" style={{ animationDelay: '1.4s' }}>
         <span>Based in Winklespruit</span>
         <span aria-hidden>·</span>
         <span>Serving businesses across South Africa</span>
