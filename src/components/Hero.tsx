@@ -1,105 +1,54 @@
+import { ArrowRight, ArrowDownRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Sparkles, ShieldCheck, Zap } from 'lucide-react';
-import heroDashboard from '@/assets/hero-dashboard.webp';
+import { Magnetic, Words } from '@/components/home/motion';
 
-const Hero = () => {
-  return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-16 px-4 hero-gradient overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-[28rem] h-[28rem] bg-primary/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 -right-32 w-[28rem] h-[28rem] bg-secondary/15 rounded-full blur-3xl" />
-      </div>
+const Hero = () => (
+  <section className="relative overflow-hidden grain pt-32 pb-16 md:pt-44 md:pb-24 px-4">
+    {/* slow soft wave gradient */}
+    <div aria-hidden className="pointer-events-none absolute inset-0">
+      <div className="wave-blob absolute -top-40 right-[-20%] w-[70vw] h-[70vw] max-w-[900px] max-h-[900px] rounded-full bg-secondary/15 blur-3xl" />
+      <div className="wave-blob absolute bottom-[-30%] left-[-15%] w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] rounded-full bg-primary/10 blur-3xl" style={{ animationDelay: '-9s' }} />
+    </div>
 
-      {/* Grid pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
-        }}
-      />
+    <div className="container relative mx-auto max-w-7xl px-0 md:px-8">
+      <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-secondary font-medium mb-8 word" style={{ animationDelay: '0s' }}>
+        Web development & SEO · Winklespruit, KZN
+      </p>
 
-      <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left — copy */}
-          <div className="text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 animate-fade-up">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm text-primary font-medium">
-                Free AI Website Audit — Instant Results
-              </span>
-            </div>
+      <h1 className="font-heading font-normal text-[2.75rem] leading-[1.02] sm:text-6xl md:text-7xl lg:text-[7.25rem] max-w-6xl">
+        <Words text="Websites that" start={0.1} />
+        <Words text="get found." start={0.26} className="italic text-primary" />
+        <br className="hidden md:block" />
+        <Words text="Built by people who know" start={0.45} />
+        <Words text="this market." start={0.85} className="italic" />
+      </h1>
 
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-up-delay-1">
-              Websites & SEO That
-              <span className="block gradient-text">Actually Convert</span>
-            </h1>
-
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed animate-fade-up-delay-2">
-              Native Digital Media builds high-performing websites and runs data-driven
-              SEO &amp; ad campaigns for South African businesses. Get a free AI audit
-              of your site in under 30 seconds.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 animate-fade-up-delay-3">
-              <Button variant="hero" size="xl" asChild>
-                <a href="#contact">
-                  Get My Free AI Audit
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </a>
-              </Button>
-              <Button variant="heroOutline" size="xl" asChild>
-                <a href="#services">View Services</a>
-              </Button>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 mt-10 animate-fade-up-delay-3">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <ShieldCheck className="w-4 h-4 text-primary" />
-                <span>10+ years experience</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Zap className="w-4 h-4 text-primary" />
-                <span>150+ projects delivered</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span>5★ Google reviews</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right — hero visual */}
-          <div className="relative animate-fade-up-delay-2 hidden lg:block">
-            <div className="absolute -inset-6 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-[2rem] blur-3xl" />
-            <div className="relative rounded-3xl overflow-hidden border border-border shadow-2xl">
-              <img
-                src={heroDashboard}
-                alt="AI-powered analytics dashboard preview showing website performance metrics"
-                width={1280}
-                height={960}
-                fetchPriority="high"
-                decoding="async"
-                className="w-full h-auto animate-float"
-              />
-            </div>
-            <div className="absolute -bottom-6 -left-6 px-5 py-3 rounded-2xl bg-card border border-border shadow-xl backdrop-blur">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Audit score</p>
-                  <p className="font-heading font-bold text-lg gradient-text">87/100</p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="mt-10 md:mt-14 grid md:grid-cols-12 gap-8 items-end">
+        <p className="md:col-span-6 text-lg md:text-xl text-muted-foreground leading-relaxed word" style={{ animationDelay: '1.1s' }}>
+          We design fast, mobile-first websites and do the SEO work that puts South African
+          businesses in front of local customers — usually live by the next business day.
+        </p>
+        <div className="md:col-span-6 flex flex-col sm:flex-row sm:justify-end items-start sm:items-center gap-5 word" style={{ animationDelay: '1.25s' }}>
+          <Magnetic>
+            <Button variant="hero" size="xl" asChild>
+              <a href="#contact">Get a free website & SEO audit <ArrowRight className="ml-2 h-5 w-5" /></a>
+            </Button>
+          </Magnetic>
+          <a href="#work" className="group inline-flex items-center gap-2 font-medium underline-offset-8 hover:underline">
+            See our work <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+          </a>
         </div>
       </div>
-    </section>
-  );
-};
+
+      <div className="mt-16 md:mt-24 border-t border-foreground/15 pt-5 flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted-foreground word" style={{ animationDelay: '1.4s' }}>
+        <span>Based in Winklespruit</span>
+        <span aria-hidden>·</span>
+        <span>Serving businesses across South Africa</span>
+        <span aria-hidden className="hidden sm:inline">·</span>
+        <span className="hidden sm:inline">Reply within one working hour</span>
+      </div>
+    </div>
+  </section>
+);
 
 export default Hero;
