@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,7 +14,6 @@ import { useToast } from "@/hooks/use-toast";
 import { Send, MapPin, Phone, Mail, Sparkles, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { trackLeadConversion } from "@/lib/tracking";
-import auditVisual from "@/assets/ai-audit-visual.webp";
 
 interface AuditResult {
   score?: number;
@@ -127,7 +127,7 @@ const LeadAuditForm = () => {
   };
 
   return (
-    <section id="contact" className="relative py-24 px-4 overflow-hidden">
+    <section id="contact" className="theme-ink relative py-24 px-4 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 -right-32 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
@@ -140,24 +140,16 @@ const LeadAuditForm = () => {
               Get In Touch
             </span>
             <h2 className="font-heading text-4xl md:text-5xl font-bold mt-4 mb-6">
-              Free AI Website <span className="gradient-text">Audit</span>
+              Let’s see what your site is <span className="gradient-text">missing.</span>
             </h2>
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
               Drop your website URL below and our AI will instantly score your site
               and give you 3-5 actionable recommendations — for free, no obligation.
             </p>
 
-            <div className="relative mb-10 rounded-3xl overflow-hidden border border-border">
-              <img
-                src={auditVisual}
-                alt="AI scanning a website to generate an instant audit report"
-                loading="lazy"
-                width={1024}
-                height={1024}
-                className="w-full h-48 object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-            </div>
+            <a href="https://wa.me/27731653988" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-secondary text-ink font-semibold px-6 py-3 mb-10 hover:brightness-110 transition">
+              <MessageCircle className="w-5 h-5" /> Chat on WhatsApp · 073 165 3988
+            </a>
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">

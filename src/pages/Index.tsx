@@ -1,38 +1,36 @@
 import { lazy, Suspense } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import PainPoints from '@/components/PainPoints';
-import Services from '@/components/Services';
-import WebsitePackages from '@/components/WebsitePackages';
 import Footer from '@/components/Footer';
+import StickyCta from '@/components/StickyCta';
+import { Positioning, ServicePanels, SelectedWork, Process, WhyNative, Testimonials } from '@/components/home/Sections';
+import { useRevealAll } from '@/components/home/motion';
 
-// Below-the-fold sections — lazy load to shrink initial bundle
-const HowItWorks = lazy(() => import('@/components/HowItWorks'));
-const WhyChooseUs = lazy(() => import('@/components/WhyChooseUs'));
-const CaseStudies = lazy(() => import('@/components/CaseStudies'));
+const WebsitePackages = lazy(() => import('@/components/WebsitePackages'));
 const LeadAuditForm = lazy(() => import('@/components/LeadAuditForm'));
-const Blog = lazy(() => import('@/components/Blog'));
 const FAQ = lazy(() => import('@/components/FAQ'));
 
 const SectionFallback = () => <div className="min-h-[400px]" aria-hidden />;
 
 const Index = () => {
+  useRevealAll();
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background pb-20 md:pb-0">
       <Navbar />
       <Hero />
-      <PainPoints />
-      <Services />
-      <WebsitePackages />
+      <Positioning />
+      <ServicePanels />
+      <SelectedWork />
+      <Process />
+      <WhyNative />
+      <Testimonials />
       <Suspense fallback={<SectionFallback />}>
-        <HowItWorks />
-        <WhyChooseUs />
-        <CaseStudies />
-        <LeadAuditForm />
-        <Blog />
+        <WebsitePackages />
         <FAQ />
+        <LeadAuditForm />
       </Suspense>
       <Footer />
+      <StickyCta />
     </main>
   );
 };

@@ -8,7 +8,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-xl border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="container mx-auto max-w-6xl px-4">
         <div className="flex items-center justify-between h-16">
           <a href="#" className="flex items-center">
@@ -17,6 +17,7 @@ const Navbar = () => {
           
           <div className="hidden md:flex items-center gap-8">
             <a href="/#services" className="text-muted-foreground hover:text-foreground transition-colors">Services</a>
+            <a href="/#work" className="text-muted-foreground hover:text-foreground transition-colors">Work</a>
             <a href="/#pricing" className="text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
             <a href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</a>
             <a href="/#about" className="text-muted-foreground hover:text-foreground transition-colors">About</a>
@@ -24,8 +25,8 @@ const Navbar = () => {
             <Link to="/auth" className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1">
               <LogIn className="w-4 h-4" /> Client Zone
             </Link>
-            <Button variant="default" size="sm" asChild>
-              <a href="/#contact">Get Started</a>
+            <Button variant="hero" size="sm" asChild>
+              <a href="/#contact">Free audit</a>
             </Button>
           </div>
           

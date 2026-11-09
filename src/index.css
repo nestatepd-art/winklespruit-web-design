@@ -2,66 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 232 47% 7%;
-    --foreground: 210 40% 98%;
+    /* Warm sand / ocean ink / sunrise orange / sea-glass teal */
+    --background: 37 45% 94%;
+    --foreground: 191 53% 9%;
+    --card: 37 50% 97%;
+    --card-foreground: 191 53% 9%;
+    --popover: 37 50% 97%;
+    --popover-foreground: 191 53% 9%;
+    --primary: 17 80% 54%;
+    --primary-foreground: 37 50% 97%;
+    --secondary: 178 46% 33%;
+    --secondary-foreground: 37 50% 97%;
+    --muted: 36 30% 88%;
+    --muted-foreground: 191 15% 32%;
+    --accent: 178 46% 33%;
+    --accent-foreground: 37 50% 97%;
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 37 50% 97%;
+    --border: 36 22% 80%;
+    --input: 36 22% 78%;
+    --ring: 17 80% 54%;
+    --radius: 0.5rem;
 
-    --card: 232 40% 10%;
-    --card-foreground: 210 40% 98%;
+    --ink: 191 53% 9%;
+    --sand: 37 45% 94%;
 
-    --popover: 232 40% 10%;
-    --popover-foreground: 210 40% 98%;
+    --gradient-primary: linear-gradient(90deg, hsl(17 80% 54%), hsl(17 80% 54%));
+    --gradient-hero: hsl(var(--background));
+    --gradient-card: hsl(var(--card));
+    --shadow-glow: 0 20px 60px -30px hsl(191 53% 9% / 0.35);
+    --shadow-card: 0 1px 0 hsl(36 22% 80%);
+    --shadow-button: 0 10px 30px -12px hsl(17 80% 54% / 0.6);
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 232 47% 7%;
+    --font-heading: 'Fraunces', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
 
-    --secondary: 260 60% 55%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 232 30% 15%;
-    --muted-foreground: 232 20% 60%;
-
-    --accent: 260 70% 60%;
-    --accent-foreground: 232 47% 7%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 232 30% 18%;
-    --input: 232 30% 18%;
-    --ring: 217 91% 60%;
-
-    --radius: 0.75rem;
-
-    /* Custom tokens - Blue to Purple gradient */
-    --gradient-primary: linear-gradient(135deg, hsl(217, 91%, 60%) 0%, hsl(260, 60%, 55%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(232, 47%, 7%) 0%, hsl(232, 40%, 12%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(232, 40%, 12%) 0%, hsl(232, 40%, 10%) 100%);
-    --gradient-glow: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsl(217, 91%, 60%, 0.08), transparent 40%);
-    
-    --shadow-glow: 0 0 60px hsl(217, 91%, 60%, 0.2);
-    --shadow-card: 0 4px 24px hsl(0, 0%, 0%, 0.4);
-    --shadow-button: 0 4px 20px hsl(217, 91%, 60%, 0.4);
-
-    --font-heading: 'Space Grotesk', sans-serif;
-    --font-body: 'Inter', sans-serif;
-
-    --sidebar-background: 232 40% 10%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 232 47% 7%;
-    --sidebar-accent: 232 30% 15%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 232 30% 18%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-background: 37 50% 97%;
+    --sidebar-foreground: 191 53% 9%;
+    --sidebar-primary: 17 80% 54%;
+    --sidebar-primary-foreground: 37 50% 97%;
+    --sidebar-accent: 36 30% 88%;
+    --sidebar-accent-foreground: 191 53% 9%;
+    --sidebar-border: 36 22% 80%;
+    --sidebar-ring: 17 80% 54%;
   }
 
-  .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+  /* Deep ocean-ink sections */
+  .theme-ink {
+    --background: 191 53% 9%;
+    --foreground: 37 45% 94%;
+    --card: 191 45% 13%;
+    --card-foreground: 37 45% 94%;
+    --popover: 191 45% 13%;
+    --popover-foreground: 37 45% 94%;
+    --muted: 191 35% 17%;
+    --muted-foreground: 37 15% 72%;
+    --secondary: 176 40% 55%;
+    --accent: 176 40% 55%;
+    --border: 191 30% 22%;
+    --input: 191 30% 25%;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }
 
@@ -81,25 +85,36 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    font-optical-sizing: auto;
   }
 }
 
 @layer utilities {
   .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-primary);
+    color: hsl(var(--primary));
+    font-style: italic;
   }
+  .grain::after {
+    content: ""; position: absolute; inset: -50%; pointer-events: none; opacity: .07;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain 8s steps(6) infinite;
+  }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  .reveal.is-in { opacity: 1; transform: none; }
+  .rise { opacity: 0; transform: translateY(0.4em); animation: wordIn .8s cubic-bezier(.2,.7,.2,1) forwards; }
+  .word { display: inline-block; opacity: 0; transform: translateY(0.4em); animation: wordIn .8s cubic-bezier(.2,.7,.2,1) forwards; }
 
   .glow-effect {
     box-shadow: var(--shadow-glow);
   }
 
   .card-gradient {
-    background: var(--gradient-card);
+    background: hsl(var(--card));
   }
 
   .hero-gradient {
-    background: var(--gradient-hero);
+    background: hsl(var(--background));
   }
 }
 
@@ -160,4 +175,16 @@
 
 .animate-float {
   animation: float 4s ease-in-out infinite;
+}
+
+@keyframes grain { 0%,100% { transform: translate(0,0) } 20% { transform: translate(-5%,3%) } 40% { transform: translate(4%,-6%) } 60% { transform: translate(-3%,5%) } 80% { transform: translate(6%,2%) } }
+@keyframes wordIn { to { opacity: 1; transform: none; } }
+@keyframes waveDrift { 0%,100% { transform: translate3d(0,0,0) scale(1) } 50% { transform: translate3d(-4%,3%,0) scale(1.08) } }
+.wave-blob { animation: waveDrift 18s ease-in-out infinite; }
+main > * { animation: pageIn .5s ease-out; }
+@keyframes pageIn { from { opacity: 0 } to { opacity: 1 } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal, .word, .rise { opacity: 1 !important; transform: none !important; }
+  html { scroll-behavior: auto; }
 }

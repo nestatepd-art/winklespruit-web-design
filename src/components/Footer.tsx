@@ -3,13 +3,13 @@ import logo from '@/assets/native-digital-logo.png';
 
 const Footer = () => {
   return (
-    <footer className="py-16 px-4 bg-secondary/50 border-t border-border">
+    <footer className="theme-ink py-16 px-4 border-t border-border">
       <div className="container mx-auto max-w-6xl">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div className="lg:col-span-2">
             <img src={logo} alt="Native Digital" className="h-16 w-auto mb-4" />
             <p className="text-muted-foreground leading-relaxed mb-6 max-w-md">
-              Transforming businesses through innovative web development and strategic SEO solutions. Your trusted digital partner in South Africa.
+              Websites and SEO for South African businesses. Built in Winklespruit, KZN.
             </p>
           </div>
           

@@ -85,7 +85,7 @@ const ChatWidget = () => {
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? "Close chat" : "Open chat with Nia"}
         className={cn(
-          "fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110",
+          "fixed bottom-24 md:bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110",
           "bg-gradient-to-br from-primary to-secondary text-primary-foreground",
         )}
       >
@@ -97,7 +97,7 @@ const ChatWidget = () => {
         <div
           className={cn(
             "fixed z-50 bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden",
-            "bottom-24 right-6 w-[calc(100vw-3rem)] sm:w-96 h-[32rem] max-h-[calc(100vh-8rem)]",
+            "bottom-40 md:bottom-24 right-6 w-[calc(100vw-3rem)] sm:w-96 h-[32rem] max-h-[calc(100vh-8rem)]",
             "animate-fade-up",
           )}
         >
