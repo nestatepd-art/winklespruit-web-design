@@ -24,13 +24,13 @@ const Hero = () => (
       </h1>
 
       <div className="mt-10 md:mt-14 grid md:grid-cols-12 gap-8 items-end">
-        <p className="md:col-span-6 text-lg md:text-xl text-muted-foreground leading-relaxed rise" style={{ animationDelay: '1.1s' }}>
+        <p className="md:col-span-6 min-w-0 text-lg md:text-xl text-muted-foreground leading-relaxed rise" style={{ animationDelay: '1.1s' }}>
           We design fast, mobile-first websites and do the SEO work that puts South African
           businesses in front of local customers — usually live by the next business day.
         </p>
-        <div className="md:col-span-6 flex flex-col sm:flex-row sm:justify-end items-start sm:items-center gap-5 rise" style={{ animationDelay: '1.25s' }}>
+        <div className="md:col-span-6 min-w-0 flex flex-col sm:flex-row sm:justify-end items-start sm:items-center gap-5 rise" style={{ animationDelay: '1.25s' }}>
           <Magnetic>
-            <Button variant="hero" size="xl" asChild>
+            <Button variant="hero" size="xl" className="whitespace-normal text-left h-auto py-4" asChild>
               <a href="#contact">Get a free website & SEO audit <ArrowRight className="ml-2 h-5 w-5" /></a>
             </Button>
           </Magnetic>

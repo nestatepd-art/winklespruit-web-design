@@ -14,7 +14,6 @@ import { useToast } from "@/hooks/use-toast";
 import { Send, MapPin, Phone, Mail, Sparkles, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { trackLeadConversion } from "@/lib/tracking";
-import auditVisual from "@/assets/ai-audit-visual.webp";
 
 interface AuditResult {
   score?: number;
@@ -148,17 +147,9 @@ const LeadAuditForm = () => {
               and give you 3-5 actionable recommendations — for free, no obligation.
             </p>
 
-            <div className="relative mb-10 rounded-3xl overflow-hidden border border-border">
-              <img
-                src={auditVisual}
-                alt="AI scanning a website to generate an instant audit report"
-                loading="lazy"
-                width={1024}
-                height={1024}
-                className="w-full h-48 object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-            </div>
+            <a href="https://wa.me/27731653988" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-secondary text-ink font-semibold px-6 py-3 mb-10 hover:brightness-110 transition">
+              <MessageCircle className="w-5 h-5" /> Chat on WhatsApp · 073 165 3988
+            </a>
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">

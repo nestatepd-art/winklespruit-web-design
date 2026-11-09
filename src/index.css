@@ -110,11 +110,11 @@
   }
 
   .card-gradient {
-    background: var(--gradient-card);
+    background: hsl(var(--card));
   }
 
   .hero-gradient {
-    background: var(--gradient-hero);
+    background: hsl(var(--background));
   }
 }
 
